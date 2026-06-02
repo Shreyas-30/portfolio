@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio Wireframes — Shreyas Kulkarni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Kalam:wght@300;400;700&family=Gaegu:wght@300;400;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#23201b;
+    --paper:#f5f1e8;
+    --line:#2a2620;
+    --pencil:#6b655c;
+    --accent:#c0392b;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;}
+  body{
+    font-family:'Kalam',cursive;
+    background:#e7e2d6;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* hand-drawn displacement filter wrapper */
+  .sketch-defs{position:absolute;width:0;height:0;overflow:hidden;}
+
+  /* ---------- toolbar ---------- */
+  .toolbar{
+    position:sticky;top:0;z-index:50;
+    background:#1d1a15;
+    color:#f5f1e8;
+    border-bottom:2px solid #000;
+    padding:10px 18px 12px;
+  }
+  .toolbar .row1{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+  .toolbar h1{
+    font-family:'Caveat',cursive;font-weight:700;
+    font-size:23px;margin:0;letter-spacing:.3px;
+  }
+  .toolbar .sub{
+    font-family:'Spline Sans Mono',monospace;
+    font-size:11px;color:#b8b0a0;letter-spacing:.5px;
+  }
+  .tabs{display:flex;gap:9px;margin-top:11px;flex-wrap:wrap;}
+  .tab{
+    font-family:'Caveat',cursive;font-weight:600;font-size:19px;
+    background:transparent;color:#cfc8b8;
+    border:2px solid #4a443a;border-radius:13px 11px 12px 14px;
+    padding:5px 16px 4px;cursor:pointer;line-height:1.05;
+    transition:transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .tab .k{font-family:'Spline Sans Mono',monospace;font-size:10px;display:block;color:#8a8475;letter-spacing:1px;margin-bottom:1px;}
+  .tab:hover{transform:translateY(-1px) rotate(-.5deg);color:#fff;}
+  .tab.active{background:#f5f1e8;color:#1d1a15;border-color:#f5f1e8;transform:rotate(-.6deg);}
+  .tab.active .k{color:#9a7b2f;}
+  .blurb{
+    margin-top:9px;font-family:'Kalam',cursive;font-size:14px;color:#d8d1c2;
+    max-width:760px;min-height:20px;
+  }
+  .blurb b{color:#fff;}
+  .subctrl{display:flex;align-items:center;gap:8px;margin-top:11px;flex-wrap:wrap;min-height:0;}
+  .subctrl:empty{display:none;}
+  .subctrl-lbl{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:1px;color:#9a9486;text-transform:uppercase;margin-right:2px;}
+  .sbtn{font-family:'Spline Sans Mono',monospace;font-size:12px;background:transparent;color:#cfc8b8;
+    border:1.5px solid #4a443a;border-radius:8px 7px 9px 7px;padding:4px 11px;cursor:pointer;transition:all .15s ease;}
+  .sbtn:hover{color:#fff;border-color:#7a7263;}
+  .sbtn.active{background:#c0392b;color:#fff;border-color:#c0392b;}
+  /* ---------- stage ---------- */
+  .stage-wrap{
+    padding:22px 22px 60px;
+    display:flex;justify-content:center;
+  }
+  .frame{
+    width:min(1180px,100%);
+    background:var(--paper);
+    border:2px solid #000;
+    border-radius:6px;
+    box-shadow:0 18px 50px rgba(0,0,0,.22), 0 3px 0 rgba(0,0,0,.4);
+    overflow:hidden;
+    position:relative;
+  }
+  .browserbar{
+    height:34px;background:#ece6d8;border-bottom:2px solid var(--line);
+    display:flex;align-items:center;gap:7px;padding:0 12px;
+  }
+  .browserbar .dot{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--line);}
+  .browserbar .url{
+    margin-left:10px;font-family:'Spline Sans Mono',monospace;font-size:11px;
+    color:var(--pencil);background:#f5f1e8;border:1.5px solid var(--line);
+    border-radius:20px;padding:2px 14px;
+  }
+  .page{position:relative;}
+
+  /* grain overlay */
+  .grain::after{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:30;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity:.06;mix-blend-mode:multiply;
+  }
+
+  /* ---------- shared sketch primitives ---------- */
+  .tile, .thumb{
+    background:
+      repeating-linear-gradient(45deg, rgba(42,38,32,.10) 0 2px, transparent 2px 9px),
+      #efe9dc;
+    border:2px solid var(--line);
+    position:relative;overflow:hidden;
+    filter:url(#rough);
+  }
+  .tile .cap, .thumb .cap{
+    position:absolute;left:7px;bottom:5px;
+    font-family:'Spline Sans Mono',monospace;font-size:10px;
+    color:var(--pencil);background:rgba(245,241,232,.82);
+    padding:1px 6px;border-radius:3px;letter-spacing:.3px;
+  }
+  .thumb .ph{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:'Spline Sans Mono',monospace;font-size:10px;color:var(--pencil);
+  }
+  .squig{display:block;color:var(--pencil);opacity:.85;}
+  .rule{height:0;border:none;border-top:2px solid var(--line);filter:url(#rough);margin:0;}
+
+  .viewlink{
+    font-family:'Spline Sans Mono',monospace;font-weight:600;font-size:13px;white-space:nowrap;
+    color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:7px;
+    border-bottom:2px solid var(--ink);padding-bottom:1px;
+  }
+  .viewlink .arr{font-family:'Caveat',cursive;font-size:20px;transition:transform .2s ease;display:inline-block;}
+  .viewlink:hover .arr{transform:translate(3px,-3px);}
+
+  .kicker{
+    font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2px;
+    text-transform:uppercase;color:var(--pencil);
+  }
+
+  /* ---------- floating animated nav ---------- */
+  .floatnav{
+    position:fixed;left:50%;bottom:26px;transform:translateX(-50%);
+    z-index:40;display:flex;align-items:center;gap:2px;
+    background:var(--paper);border:2px solid var(--line);
+    border-radius:40px;padding:6px 8px;
+    box-shadow:0 10px 26px rgba(0,0,0,.20);
+    filter:url(#rough);
+    animation:bob 6s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-4px)}}
+  .floatnav .pulse{
+    width:11px;height:11px;border-radius:50%;background:var(--accent);
+    margin:0 8px 0 6px;animation:pulse 1.8s ease-in-out infinite;flex:none;
+  }
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.5}}
+  .floatnav a{
+    font-family:'Caveat',cursive;font-weight:600;font-size:20px;line-height:1;
+    color:var(--ink);text-decoration:none;padding:6px 14px;border-radius:22px;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .floatnav a:hover{background:rgba(42,38,32,.10);transform:rotate(-2deg);}
+  @media (prefers-reduced-motion: reduce){
+    .floatnav{animation:none;} .floatnav .pulse{animation:none;}
+  }
+
+  .annot{
+    font-family:'Caveat',cursive;font-size:18px;color:var(--accent);
+    transform:rotate(-3deg);display:inline-block;
+  }
+</style>
+</head>
+<body>
+<svg class="sketch-defs" aria-hidden="true">
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/></filter>
+  <filter id="rough2"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="13" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/></filter>
+</svg>
+
+<div class="toolbar">
+  <div class="row1">
+    <h1>Portfolio wireframes</h1>
+    <span class="sub">SHREYAS KULKARNI · LOW-FI EXPLORATION · 4 DIRECTIONS</span>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div class="blurb" id="blurb"></div>
+  <div class="subctrl" id="subctrl"></div>
+</div>
+
+<div class="stage-wrap">
+  <div class="frame grain">
+    <div class="browserbar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="url">kshreyas.com</span>
+    </div>
+    <div class="page" id="page"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Portfolio wireframes — render engine
+   4 directions share a masonry-shuffle hero + floating nav,
+   but differ in feel, color, and project-card structure.
+   ============================================================ */
+
+/* ---------- shared data ---------- */
+const NAME = "Shreyas Kulkarni";
+const INTRO = "Engineering × Design × Business — I build things meant to drive real, meaningful change.";
+
+// collage = a personal photo wall (travel, film, candids) mixed with a few work shots
+const TILES = [
+  ["travel", 2, 3], ["portrait", 2, 2], ["film roll", 3, 2], ["street", 2, 2],
+  ["studio", 2, 2], ["landscape", 3, 2], ["candid", 2, 2], ["detail", 2, 3],
+  ["Kiro", 2, 2], ["workshop", 2, 2], ["sketch", 3, 2], ["macro", 2, 2],
+  ["b&w", 2, 2], ["clock", 2, 2], ["trip", 2, 2], ["render", 2, 2],
+];
+
+const PROJECTS = [
+  { t: "Kiro", sub: "AI money coach", tags: "Product · Full-stack", cap: "Kiro app",
+    body: "Designed, built & shipped. Plaid bank APIs, 1,000+ users." },
+  { t: "Mechanical Cuckoo Clock", sub: "All-mechanical timepiece", tags: "Mechanical · Fabrication", cap: "clock",
+    body: "Hand-cut gears, escapement & finished wood — no electronics." },
+  { t: "Amtrak Rebooked", sub: "Rail booking redesign", tags: "UX · Concept", cap: "Amtrak",
+    body: "Rethinking the long-haul booking flow end to end." },
+  { t: "Laptop Stand", sub: "Industrial design", tags: "ID · CMF", cap: "stand",
+    body: "CMF studies and a weighted aluminium base." },
+  { t: "Mechatronics", sub: "Sensors + actuators", tags: "Robotics · Embedded", cap: "rig",
+    body: "Closed-loop control on embedded C." },
+];
+
+/* ---------- helpers ---------- */
+function wave(w, amp = 3) {
+  const step = 13; let d = `M0 ${5 + amp}`;
+  for (let x = 0; x <= w; x += step) {
+    const cx = x + step / 2, cy = (Math.floor(x / step) % 2 ? 5 + amp * 2 : 5);
+    d += ` Q ${cx} ${cy} ${x + step} ${5 + amp}`;
+  }
+  return `<svg class="squig" width="${w}" height="${amp * 2 + 6}" viewBox="0 0 ${w} ${amp * 2 + 6}" preserveAspectRatio="none"><path d="${d}" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>`;
+}
+function lines(widths, amp) { return `<div class="lines">${widths.map(w => wave(w, amp)).join("")}</div>`; }
+function tilesHTML(slice) {
+  return (slice ? TILES.slice(0, slice) : TILES)
+    .map(([c, cs, rs], i) => `<div class="tile${i === 0 ? " feat" : ""}" style="grid-column:span ${cs};grid-row:span ${rs}"><span class="cap">${c}</span></div>`)
+    .join("");
+}
+function viewLink(label = "view") {
+  return `<a class="viewlink" href="#">${label} <span class="arr">↗</span></a>`;
+}
+
+/* ---------- floating nav ---------- */
+function navHTML() {
+  return `<nav class="floatnav"><span class="pulse"></span>
+    <a href="#">Work</a><a href="#">About</a><a href="#">Play</a><a href="#">Contact</a></nav>`;
+}
+
+/* ---------- footer ---------- */
+function footerHTML(d) {
+  return `<footer class="ft ft-${d}">
+    <div class="ft-lead"><span class="annot">say hi →</span>
+      <div class="ft-big">Let's make something.</div></div>
+    <div class="ft-soc">
+      <a href="#">Instagram ↗</a><a href="#">LinkedIn ↗</a>
+      <a href="#">GitHub ↗</a><a href="#">Email ↗</a>
+    </div>
+    <div class="ft-end"><span>© 2026 Shreyas Kulkarni</span><span class="ft-note">made by hand, not by template</span></div>
+  </footer>`;
+}
+
+/* ---------- hero (shared, density varies) ---------- */
+function heroHTML(d, opts) {
+  const { density, namePos } = opts;
+  return `<section class="hero hero-${d} np-${namePos}">
+    <div class="collage den-${density}" id="collage-${d}">${tilesHTML(density === "sparse" ? 7 : 0)}</div>
+    <div class="hero-veil"></div>
+    <div class="namecard">
+      ${d === "B" ? '<span class="hl"></span>' : ""}
+      <div class="kicker">portfolio · ${new Date().getFullYear()}</div>
+      <h2 class="bigname">${NAME}</h2>
+      <p class="intro">${INTRO}</p>
+      ${d === "A" ? '<span class="annot" style="margin-top:6px">scroll for work ↓</span>' : ""}
+    </div>
+  </section>`;
+}
+
+/* ============================================================
+   PROJECT SECTIONS — one structure per direction
+   ============================================================ */
+
+/* A — Editorial zig-zag, thin rules, big serif-ish titles */
+function projectsA() {
+  const cards = PROJECTS.map((p, i) => `
+    <article class="zz ${i % 2 ? "right" : "left"}">
+      <div class="zz-thumb"><div class="thumb"><span class="cap">${p.cap}</span></div></div>
+      <div class="zz-body">
+        <div class="kicker">${String(i + 1).padStart(2, "0")} · ${p.tags}</div>
+        <h3 class="ptitle">${p.t}</h3>
+        <p class="psub">${p.sub} — ${p.body}</p>
+        ${lines([280, 220], 2.4)}
+        ${viewLink("view project")}
+      </div>
+    </article>
+    <hr class="rule"/>`).join("");
+  return `<section class="projects pA">
+    <div class="sec-head"><h2 class="seclabel">Projects</h2><span class="kicker">selected work</span></div>
+    <hr class="rule"/>${cards}
+    <div class="more">⋮ <span class="annot">more coming</span></div>
+  </section>`;
+}
+
+/* B — Playful tilted cards, tape corners, sticker view badge */
+function projectsB() {
+  const cards = PROJECTS.map((p, i) => `
+    <article class="card tilt${i % 3}">
+      <span class="tape"></span>
+      <div class="card-row ${i % 2 ? "rev" : ""}">
+        <div class="thumb sq"><span class="cap">${p.cap}</span></div>
+        <div class="card-txt">
+          <h3 class="ptitle">${p.t}</h3>
+          <p class="psub">${p.sub}</p>
+          ${lines([260, 230, 170], 3)}
+          <div class="card-tags"><span class="chip">${p.tags.split(" · ").join("</span><span class='chip'>")}</span></div>
+        </div>
+      </div>
+      <a class="badge" href="#">view ↗</a>
+    </article>`).join("");
+  return `<section class="projects pB">
+    <h2 class="seclabel">Projects <span class="annot">— the fun stuff</span></h2>
+    <div class="cardstack">${cards}</div>
+    <div class="more">⋮ <span class="annot">+ more soon</span></div>
+  </section>`;
+}
+
+/* C — Minimal, airy, text-led rows; thumb small + reveals on hover */
+function projectsC() {
+  const rows = PROJECTS.map((p, i) => `
+    <article class="mrow">
+      <div class="mrow-idx kicker">${String(i + 1).padStart(2, "0")}</div>
+      <div class="mrow-main">
+        <h3 class="ptitle">${p.t}</h3>
+        <p class="psub">${p.sub}</p>
+      </div>
+      <div class="mrow-meta"><span class="kicker">${p.tags}</span>${viewLink("view")}</div>
+      <div class="mrow-thumb"><div class="thumb"><span class="cap">${p.cap}</span></div></div>
+    </article>
+    <hr class="rule"/>`).join("");
+  return `<section class="projects pC">
+    <div class="sec-head"><h2 class="seclabel">Projects</h2></div>
+    <hr class="rule"/>${rows}
+    <div class="more"><span class="kicker">— more in the archive —</span></div>
+  </section>`;
+}
+
+/* D — Bold graphic, full-width bands, giant index numbers, accent */
+function projectsD() {
+  const rows = PROJECTS.map((p, i) => `
+    <article class="zzD ${i % 2 ? "right" : "left"}">
+      <div class="zzD-thumb"><div class="thumb"><span class="cap">${p.cap}</span></div></div>
+      <div class="zzD-body">
+        <div class="kickerD"><span class="idxn">${String(i + 1).padStart(2, "0")}</span> ${p.tags}</div>
+        <h3 class="ptitle">${p.t}</h3>
+        <p class="psub">${p.sub} — ${p.body}</p>
+        ${viewLink("view project")}
+      </div>
+    </article>
+    ${i < PROJECTS.length - 1 ? '<hr class="rule ruleD"/>' : ""}`).join("");
+  return `<section class="projects pD">
+    <div class="sec-head"><h2 class="seclabel">Projects<span class="dot-accent">.</span></h2><span class="kicker">selected work</span></div>
+    <hr class="rule ruleD"/>${rows}
+    <div class="more">⋮</div>
+  </section>`;
+}
+
+/* ============================================================
+   DIRECTIONS
+   ============================================================ */
+const DIRS = {
+  A: {
+    label: "Editorial", k: "DIR A",
+    blurb: "<b>Type-forward & calm.</b> Big confident name, thin pen rules, warm paper + a single red-ink accent. Projects alternate left/right (your sketch). Quietly classy.",
+    css: "--ink:#23201b;--paper:#f5f1e8;--line:#2a2620;--pencil:#6b655c;--accent:#c0392b;",
+    hero: { density: "full", namePos: "bottomleft" },
+    projects: projectsA,
+  },
+  B: {
+    label: "Playful", k: "DIR B",
+    blurb: "<b>Tactile & hand-made.</b> Slightly tilted project cards with tape corners, highlighter swipe behind your name, sticker 'view' badges. Friendly, clearly human.",
+    css: "--ink:#241f1a;--paper:#faf5ea;--line:#2b2620;--pencil:#6f685c;--accent:#f4b400;--hl:#ffe24d;",
+    hero: { density: "full", namePos: "left" },
+    projects: projectsB,
+  },
+  C: {
+    label: "Minimal", k: "DIR C",
+    blurb: "<b>Quiet & airy.</b> Lots of whitespace, near-mono palette, projects as text-led rows with a small thumbnail. Restrained and gallery-like.",
+    css: "--ink:#2a2a28;--paper:#f3f1ec;--line:#34322d;--pencil:#8c887e;--accent:#34322d;",
+    hero: { density: "sparse", namePos: "topleft" },
+    projects: projectsC,
+  },
+  D: {
+    label: "Bold graphic", k: "DIR D",
+    blurb: "<b>Punchy & graphic.</b> A personal photo wall up top that gently grows a different image each cycle, strong cobalt accent, mono tags. Projects alternate left/right with compact thumbnails and clean horizontal rules.",
+    css: "--ink:#171614;--paper:#efece2;--line:#171614;--pencil:#6b675e;--accent:#2f54d6;",
+    hero: { density: "full", namePos: "centered" },
+    projects: projectsD,
+  },
+};
+
+/* ---------- direction-specific stylesheet ---------- */
+const DIR_CSS = `
+.page{font-family:'Kalam',cursive;}
+.lines{display:flex;flex-direction:column;gap:7px;margin:10px 0 14px;max-width:340px;}
+
+/* ===== HERO ===== */
+.hero{position:relative;padding:0;}
+.collage{display:grid;grid-template-columns:repeat(8,1fr);grid-auto-rows:48px;grid-auto-flow:dense;gap:8px;padding:16px;}
+.collage.den-sparse{grid-template-columns:repeat(6,1fr);grid-auto-rows:80px;gap:16px;padding:30px 30px 56px;opacity:.94;}
+.collage .tile{transition:transform 1.6s cubic-bezier(.4,0,.2,1);transform-origin:top left;will-change:transform;}
+.collage .tile.feat{grid-column:span 4 !important;grid-row:span 4 !important;z-index:2;box-shadow:0 8px 22px rgba(0,0,0,.14);}
+.collage.den-sparse .tile.feat{grid-column:span 3 !important;grid-row:span 2 !important;}
+.hero-veil{position:absolute;inset:0;pointer-events:none;}
+.namecard{position:absolute;z-index:6;max-width:min(560px,72%);background:rgba(245,241,232,.9);
+  border:2px solid var(--line);border-radius:8px;padding:20px 24px;filter:url(#rough2);
+  box-shadow:0 10px 30px rgba(0,0,0,.16);}
+.namecard .kicker{margin-bottom:8px;}
+.bigname{font-family:'Caveat',cursive;font-weight:700;line-height:.9;margin:0;font-size:64px;}
+.intro{font-size:17px;line-height:1.4;margin:12px 0 0;color:var(--ink);max-width:430px;}
+.np-bottomleft .namecard{left:26px;bottom:30px;}
+.np-left .namecard{left:26px;top:50%;transform:translateY(-50%);}
+.np-topleft .namecard{left:34px;top:34px;background:transparent;border:none;box-shadow:none;filter:none;padding:0;}
+.np-topleft .bigname{font-size:54px;}
+.np-centered .namecard{left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;}
+.np-centered .intro{margin-inline:auto;}
+
+/* B highlighter + tilt name */
+.hero-B .bigname{position:relative;z-index:2;}
+.namecard .hl{position:absolute;left:14px;bottom:54px;width:62%;height:34px;background:var(--hl);
+  transform:rotate(-2deg);z-index:0;border-radius:3px;opacity:.85;filter:url(#rough);}
+.hero-B .namecard{transform:rotate(-1.2deg);}
+.np-left.hero-B .namecard{transform:translateY(-50%) rotate(-1.2deg);}
+
+/* D centered bold */
+.hero-D .bigname{font-size:84px;letter-spacing:-1px;}
+.hero-D .namecard{background:var(--paper);border-width:3px;}
+.hero-D .collage .tile:nth-child(2),.hero-D .collage .tile:nth-child(5),.hero-D .collage .tile:nth-child(9){
+  background:var(--accent);}
+.hero-D .collage .tile:nth-child(2) .cap,.hero-D .collage .tile:nth-child(5) .cap,.hero-D .collage .tile:nth-child(9) .cap{color:#fff;background:rgba(0,0,0,.18);}
+
+/* ===== shared project bits ===== */
+.projects{padding:54px clamp(26px,5vw,64px) 40px;}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;}
+.seclabel{font-family:'Caveat',cursive;font-weight:700;font-size:44px;margin:0 0 6px;}
+.ptitle{font-family:'Caveat',cursive;font-weight:700;font-size:32px;margin:6px 0 4px;line-height:1;}
+.psub{font-size:16px;margin:0;color:var(--ink);}
+.more{text-align:center;font-family:'Caveat',cursive;font-size:30px;color:var(--pencil);margin:30px 0 6px;letter-spacing:3px;}
+
+/* A zig-zag */
+.pA .rule{margin:26px 0;}
+.zz{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center;}
+.zz.right .zz-thumb{order:2;}
+.zz-thumb .thumb{aspect-ratio:4/3;width:100%;}
+.zz-body .ptitle{font-size:38px;}
+
+/* B cards */
+.cardstack{display:flex;flex-direction:column;gap:26px;margin-top:22px;}
+.card{position:relative;background:var(--paper);border:2px solid var(--line);border-radius:12px;
+  padding:20px;box-shadow:0 8px 22px rgba(0,0,0,.12);filter:url(#rough2);}
+.card.tilt0{transform:rotate(-.8deg);}.card.tilt1{transform:rotate(.7deg);}.card.tilt2{transform:rotate(-.4deg);}
+.card .tape{position:absolute;top:-11px;left:50%;transform:translateX(-50%) rotate(-3deg);
+  width:92px;height:24px;background:rgba(244,180,0,.4);border:1px dashed rgba(42,38,32,.4);}
+.card-row{display:grid;grid-template-columns:230px 1fr;gap:24px;align-items:center;}
+.card-row.rev{grid-template-columns:1fr 230px;}
+.card-row.rev .thumb{order:2;}
+.card .thumb.sq{aspect-ratio:4/3;width:100%;border-radius:8px;}
+.card-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+.chip{font-family:'Spline Sans Mono',monospace;font-size:11px;border:1.5px solid var(--line);
+  border-radius:20px;padding:2px 10px;color:var(--pencil);}
+.badge{position:absolute;right:-10px;bottom:-12px;font-family:'Caveat',cursive;font-weight:700;font-size:20px;
+  background:var(--accent);color:#241f1a;text-decoration:none;border:2px solid var(--line);
+  width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  transform:rotate(-8deg);box-shadow:0 6px 14px rgba(0,0,0,.18);}
+.badge:hover{transform:rotate(2deg) scale(1.05);}
+
+/* C minimal rows */
+.pC{padding-top:62px;}
+.pC .rule{margin:0;}
+.mrow{display:grid;grid-template-columns:54px 1fr 230px 0px;gap:24px;align-items:center;
+  padding:30px 4px;transition:padding-left .25s ease;position:relative;}
+.mrow-thumb{position:absolute;right:0;top:50%;transform:translateY(-50%) scale(.96);opacity:0;
+  width:180px;transition:opacity .3s ease, transform .3s ease;pointer-events:none;}
+.mrow-thumb .thumb{aspect-ratio:4/3;width:100%;}
+.mrow:hover{padding-left:16px;}
+.mrow:hover .mrow-meta{opacity:0;}
+.mrow:hover .mrow-thumb{opacity:1;transform:translateY(-50%) scale(1);}
+.mrow .ptitle{font-size:34px;}
+.mrow-meta{display:flex;flex-direction:column;gap:10px;align-items:flex-start;transition:opacity .25s ease;}
+
+/* D — bold-graphic feel, alternating zig-zag rows, smaller thumbs, horizontal rules only */
+.pD{padding:54px clamp(26px,5vw,64px) 40px;}
+.pD .sec-head{padding:0;}
+.dot-accent{color:var(--accent);}
+.ruleD{border-top-width:2px;margin:34px 0;}
+.zzD{display:grid;gap:46px;align-items:center;}
+.zzD.left{grid-template-columns:360px 1fr;}
+.zzD.right{grid-template-columns:1fr 360px;}
+.zzD.right .zzD-thumb{order:2;}
+.zzD.right .zzD-body{order:1;}
+.zzD-thumb .thumb{aspect-ratio:4/3;width:100%;}
+.kickerD{font-family:'Spline Sans Mono',monospace;font-size:12px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--pencil);margin-bottom:8px;}
+.kickerD .idxn{color:var(--accent);font-weight:600;margin-right:8px;}
+.pD .ptitle{font-size:40px;}
+.pD .psub{max-width:46ch;line-height:1.45;margin-bottom:16px;}
+
+/* ===== footer ===== */
+.ft{padding:48px clamp(26px,5vw,64px) 120px;border-top:2px solid var(--line);margin-top:20px;display:flex;flex-direction:column;gap:30px;}
+.ft-lead{display:flex;flex-direction:column;align-items:flex-start;gap:6px;}
+.ft-lead .annot{margin-bottom:2px;}
+.ft-big{font-family:'Caveat',cursive;font-weight:700;font-size:46px;line-height:.95;margin:0;}
+.ft-soc{display:flex;gap:22px;flex-wrap:wrap;}
+.ft-soc a{font-family:'Spline Sans Mono',monospace;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--line);padding-bottom:2px;}
+.ft-soc a:hover{color:var(--accent);border-color:var(--accent);}
+.ft-end{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--pencil);}
+.ft-note{font-family:'Caveat',cursive;font-size:16px;}
+
+@media(max-width:780px){
+  .zz,.card-row,.card-row.rev,.zzD.left,.zzD.right{grid-template-columns:1fr !important;}
+  .card-row.rev .thumb{order:0;}
+  .zzD.right .zzD-thumb{order:0;}.zzD.right .zzD-body{order:0;}
+  .mrow{grid-template-columns:40px 1fr;}.mrow-meta,.mrow-thumb{display:none;}
+  .bigname{font-size:46px !important;}
+}
+`;
+
+/* ---------- mount ---------- */
+let styleEl, shuffleTimer;
+function buildTabs() {
+  const tabs = document.getElementById("tabs");
+  tabs.innerHTML = Object.entries(DIRS).map(([k, d]) =>
+    `<button class="tab" data-k="${k}"><span class="k">${d.k}</span>${d.label}</button>`).join("");
+  tabs.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => select(b.dataset.k)));
+}
+
+// Gentle, subtle motion: one photo grows to "feature" size each cycle, a different
+// one each time, with the rest reflowing smoothly. FLIP animates size + position.
+function stepCollage(container) {
+  const tiles = [...container.children];
+  if (tiles.length < 2) return;
+  const first = tiles.map(el => el.getBoundingClientRect());
+  const cur = tiles.findIndex(el => el.classList.contains("feat"));
+  let next = (cur + 1 + Math.floor(Math.random() * 2)) % tiles.length;
+  if (next === cur) next = (cur + 1) % tiles.length;
+  tiles.forEach(el => el.classList.remove("feat"));
+  tiles[next].classList.add("feat");
+  tiles.forEach((el, i) => {
+    const f = first[i], l = el.getBoundingClientRect();
+    const dx = f.left - l.left, dy = f.top - l.top;
+    const sx = l.width ? f.width / l.width : 1, sy = l.height ? f.height / l.height : 1;
+    el.style.transition = "none";
+    el.style.transform = `translate(${dx}px,${dy}px) scale(${sx},${sy})`;
+    void el.offsetWidth;
+    requestAnimationFrame(() => { el.style.transition = ""; el.style.transform = ""; });
+  });
+}
+
+function select(k) {
+  const d = DIRS[k];
+  document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.k === k));
+  document.getElementById("blurb").innerHTML = d.blurb;
+
+  const page = document.getElementById("page");
+  page.setAttribute("style", d.css);
+  page.innerHTML = heroHTML(k, d.hero) + d.projects() + footerHTML(k) + navHTML();
+
+  if (!styleEl) { styleEl = document.createElement("style"); document.head.appendChild(styleEl); }
+  styleEl.textContent = DIR_CSS;
+
+  // hero personality class
+  page.querySelector(".hero").classList.add("hero-" + k);
+
+  // (index-number toggle removed — number now lives subtly in the kicker)
+  document.getElementById("subctrl").innerHTML = "";
+
+  // restart collage motion
+  clearInterval(shuffleTimer);
+  const collage = document.getElementById("collage-" + k);
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    shuffleTimer = setInterval(() => stepCollage(collage), 4600);
+  }
+  try { localStorage.setItem("wf-dir", k); } catch (e) {}
+}
+
+buildTabs();
+select("D");
+
+</script>
+</body>
+</html>

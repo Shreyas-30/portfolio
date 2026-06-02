@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   Design tokens (Direction D — "Bold graphic")
+   Warm neutrals, one cobalt accent. No pure white / pure black.
+   Fonts are injected as CSS vars by next/font in app/fonts.ts.
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  --color-paper: #efece2;
+  --color-paper-2: #e7e3d6;
+  --color-ink: #171614;
+  --color-pencil: #6b675e;
+  --color-accent: #2f54d6;
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-inter-tight), system-ui, sans-serif;
+  --font-mono: var(--font-spline-mono), ui-monospace, monospace;
+
+  --ease-feature: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Subtle paper grain — low-opacity fractal noise, multiply blend.
+   Fixed full-viewport overlay, non-interactive, sits above page bg
+   but below content (content uses its own stacking where needed). */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Hero photo wall — a FIXED, gapless mosaic. Rows are 1fr so the
+   grid always fills the hero exactly (no ragged last row). Nothing
+   reflows; only the photo *inside* a tile cross-fades. Three
+   responsive templates; extra tiles are hidden on smaller screens.
+   Slot shapes are orientation-tuned (tall = portrait, wide =
+   landscape) to minimize cropping.
+   ───────────────────────────────────────────────────────────── */
+.photo-wall {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  /* mobile: 2 cols */
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-areas:
+    "s0 s0"
+    "s0 s0"
+    "s1 s2"
+    "s1 s2"
+    "s3 s3"
+    "s4 s5";
+}
+
+@media (min-width: 640px) {
+  .photo-wall {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas:
+      "s0 s0 s1 s1"
+      "s0 s0 s1 s1"
+      "s0 s0 s2 s3"
+      "s4 s4 s2 s3"
+      "s4 s4 s5 s5"
+      "s6 s6 s5 s5";
+  }
+}
+
+@media (min-width: 1024px) {
+  .photo-wall {
+    gap: 10px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas:
+      "s0 s0 s0 s1 s1 s2"
+      "s0 s0 s0 s1 s1 s2"
+      "s0 s0 s0 s3 s4 s2"
+      "s5 s5 s6 s3 s4 s7"
+      "s5 s5 s6 s3 s4 s7"
+      "s8 s8 s6 s9 s9 s7";
+  }
+}
+
+.wall-slot {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: var(--color-paper-2);
+}
+
+/* Hide overflow tiles below their breakpoint so the grid stays full. */
+@media (max-width: 1023px) {
+  .wall-slot-7,
+  .wall-slot-8,
+  .wall-slot-9 {
+    display: none;
+  }
+}
+@media (max-width: 639px) {
+  .wall-slot-6 {
+    display: none;
+  }
+}
+
+/* Utility: mono label / kicker treatment used across sections. */
+.kicker {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.72rem;
+  color: var(--color-pencil);
+}

@@ -1,0 +1,361 @@
+import type { Project } from "./types";
+
+export const projects: Project[] = [
+  {
+    slug: "speakeasy",
+    title: "SpeakEasy",
+    subtitle: "AI language-learning app",
+    tags: ["AI", "MOBILE", "PRODUCT"],
+    description:
+      "A personalized content feed that helps adult English learners practice through news, vocabulary, and voice-first AI discussion.",
+    body:
+      "SpeakEasy is a mobile app for adult English learners who need practice that fits into daily life. Instead of asking users to attend another class or follow a rigid lesson path, it turns the content they already read into a learning environment: scrollable articles, tap-to-define vocabulary, read-aloud support, saved words, and AI conversation practice built around each article.",
+    details: [
+      { label: "Role", value: "Product strategy, UX, mobile app build" },
+      { label: "Stack", value: "Expo, React Native, Node.js, Supabase, OpenAI" },
+      { label: "Validation", value: "16-user cohort + expert ESL feedback" },
+      { label: "Codebase", value: "~12,300 lines across mobile and backend" },
+    ],
+    sections: [
+      {
+        title: "Problem",
+        body:
+          "Most limited-English-proficiency demand exists beyond school age, yet formal ESL classes are hard to access. The presentation framed the core barriers as awareness, time, and transportation. SpeakEasy responds by moving practice into a habit many learners already have: reading and scrolling through everyday content.",
+      },
+      {
+        title: "Product Idea",
+        body:
+          "The app replaces a lesson-first model with a personalized, single-column feed. Users choose articles based on their interests, then learn inside that article through audio, vocabulary support, translation, saved words, and an AI discussion feature that helps them speak about what they just read.",
+      },
+      {
+        title: "Design Decisions",
+        body:
+          "The feed stays intentionally simple: one article at a time, plain headlines, short summaries, and low cognitive load. The AI conversation flow is voice-first rather than chat-first, using a phone-call mental model, one question at a time, and gentler feedback to reduce pressure.",
+      },
+    ],
+    thumbnail: {
+      src: "/images/projects/speakeasy/thumbnail.png",
+      alt: "SpeakEasy app screens",
+      width: 3000,
+      height: 3000,
+    },
+    thumbnailFit: "contain",
+    href: "/projects/speakeasy",
+    githubUrl: "https://github.com/Shreyas-30/SpeakEasy",
+    downloads: [
+      {
+        label: "App Store",
+        href: "https://testflight.apple.com/join/SfXpeTmx",
+        badge: {
+          src: "/images/projects/speakeasy/appstoredownload.png",
+          alt: "Download SpeakEasy on the App Store",
+          width: 288,
+          height: 96,
+        },
+        qr: {
+          src: "/images/projects/speakeasy/AppStore_QR_download.png",
+          alt: "SpeakEasy App Store TestFlight QR code",
+          width: 500,
+          height: 500,
+        },
+      },
+      {
+        label: "Play Store",
+        href: "https://forms.gle/GRhUe5kta3ZAa4gq9",
+        badge: {
+          src: "/images/projects/speakeasy/playstoredownload.png",
+          alt: "Get SpeakEasy on Google Play",
+          width: 288,
+          height: 96,
+        },
+        qr: {
+          src: "/images/projects/speakeasy/Form_QR_Andriod.png",
+          alt: "SpeakEasy Android access form QR code",
+          width: 500,
+          height: 500,
+        },
+      },
+    ],
+    images: [
+      {
+        src: "/images/projects/speakeasy/contentfeed.png",
+        alt: "SpeakEasy personalized content feed",
+        width: 1726,
+        height: 3542,
+      },
+    ],
+    videos: [
+      {
+        src: "/images/projects/speakeasy/onboarding.mov",
+        title: "Onboarding",
+        caption: "Interest selection and setup for a personalized learning feed.",
+      },
+      {
+        src: "/images/projects/speakeasy/article.mov",
+        title: "Article learning",
+        caption:
+          "An article becomes the learning unit: read, listen, define, save, and translate vocabulary.",
+      },
+      {
+        src: "/images/projects/speakeasy/discuss.mov",
+        title: "AI discussion",
+        caption:
+          "Voice-first conversation practice based on the article the learner just read.",
+      },
+    ],
+  },
+  {
+    slug: "kiro",
+    title: "Kiro",
+    subtitle: "AI money coach",
+    tags: ["PRODUCT", "FULL-STACK"],
+    description: "Designed, built & shipped. Plaid bank APIs, 1,000+ users.",
+    body: "Kiro is an AI-powered personal finance coach that connects to your bank accounts via Plaid, analyses your spending patterns, and surfaces actionable nudges. Designed end-to-end — from brand identity to backend — and shipped to over 1,000 users.",
+    thumbnail: { src: "/images/projects/kiro/kiro.png", alt: "Kiro — AI money coach", width: 1280, height: 719 },
+    href: "https://www.joinkiro.com/",
+    external: true,
+  },
+  {
+    slug: "mechanical-cuckoo-clock",
+    title: "Mechanical Cuckoo Clock",
+    subtitle: "All-mechanical timepiece",
+    tags: ["MECHANICAL", "FABRICATION"],
+    description: "Hand-cut gears, escapement & finished wood — no electronics.",
+    body: "A fully mechanical cuckoo clock built from scratch — every gear tooth hand-cut, the escapement tuned by feel, the case shaped and finished in wood. No microcontrollers, no servos; just the physics of a swinging pendulum and falling weights keeping time.",
+    thumbnail: { src: "/images/projects/clock/2.jpg", alt: "Mechanical cuckoo clock", width: 1280, height: 803 },
+    href: "/projects/mechanical-cuckoo-clock",
+    images: [
+      { src: "/images/projects/clock/1.jpg",  alt: "Clock assembly",       width: 1280, height: 1672 },
+      { src: "/images/projects/clock/2.jpg",  alt: "Clock front view",     width: 1280, height: 803  },
+      { src: "/images/projects/clock/3.jpg",  alt: "Gear train detail",    width: 1280, height: 1002 },
+      { src: "/images/projects/clock/4.jpg",  alt: "Escapement mechanism", width: 1256, height: 2048 },
+      { src: "/images/projects/clock/5.jpg",  alt: "Pendulum and weights", width: 1280, height: 1690 },
+      { src: "/images/projects/clock/6.jpg",  alt: "Side profile",         width: 1280, height: 812  },
+      { src: "/images/projects/clock/7.jpg",  alt: "Wood case detail",     width: 1280, height: 1173 },
+      { src: "/images/projects/clock/8.jpg",  alt: "Clock face close-up",  width: 1280, height: 1672 },
+      { src: "/images/projects/clock/9.png",  alt: "Mechanism overview",   width: 1280, height: 1027 },
+      { src: "/images/projects/clock/10.png", alt: "Gear cutting process", width: 1202, height: 2032 },
+      { src: "/images/projects/clock/11.png", alt: "Finished clock",       width: 1280, height: 850  },
+    ],
+  },
+  {
+    slug: "amtrak-rebooked",
+    title: "Amtrak Rebooked",
+    subtitle: "Rail booking redesign",
+    tags: ["UX", "CONCEPT"],
+    description: "Rethinking the long-haul booking flow end to end.",
+    body: "A ground-up redesign of Amtrak's booking experience — from destination search through seat selection and checkout. The goal was to make long-haul rail feel as effortless as flying, while surfacing the unique character of train travel.",
+    thumbnail: { src: "/images/projects/amtrak/amtrak_thumbmail.png", alt: "Amtrak Rebooked", width: 1000, height: 1000 },
+    href: "/projects/amtrak-rebooked",
+    images: [
+      { src: "/images/projects/amtrak/1.png",  alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/2.png",  alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/3.png",  alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/4.png",  alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/5.png",  alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/6.png",  alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/7.png",  alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/8.png",  alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/9.png",  alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/10.png", alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/11.png", alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/12.png", alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/13.png", alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/14.png", alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/15.png", alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/16.png", alt: "Amtrak redesign",  width: 2880, height: 1620 },
+      { src: "/images/projects/amtrak/17.png", alt: "Amtrak redesign",  width: 2880, height: 1620 },
+      { src: "/images/projects/amtrak/18.png", alt: "Amtrak redesign",  width: 2880, height: 1620 },
+      { src: "/images/projects/amtrak/19.png", alt: "Amtrak redesign",  width: 2880, height: 1620 },
+      { src: "/images/projects/amtrak/20.png", alt: "Amtrak redesign",  width: 2880, height: 1620 },
+      { src: "/images/projects/amtrak/21.png", alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/22.png", alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/23.png", alt: "Amtrak redesign",  width: 2892, height: 1632 },
+      { src: "/images/projects/amtrak/24.png", alt: "Amtrak redesign",  width: 2880, height: 1620 },
+      { src: "/images/projects/amtrak/25.png", alt: "Amtrak redesign",  width: 2880, height: 1620 },
+      { src: "/images/projects/amtrak/26.png", alt: "Amtrak redesign",  width: 2880, height: 1620 },
+    ],
+  },
+  {
+    slug: "laptop-stand",
+    title: "Laptop Stand",
+    subtitle: "Woodworking & industrial design",
+    tags: ["ID", "CMF", "FABRICATION"],
+    description: "CNC-cut wood, hand-assembled and stained — a study in CMF.",
+    body: "A laptop stand designed in CAD and fabricated on a CNC router — from a digital model to a finished wooden object. The process covered joinery design, CNC toolpath setup, glueing the cut pieces, and finishing the surface with a wood stain.",
+    thumbnail: { src: "/images/projects/laptopstand/1.png", alt: "Laptop stand", width: 1350, height: 1068 },
+    href: "/projects/laptop-stand",
+    youtubeId: "olIoftgoWJA",
+    images: [
+      { src: "/images/projects/laptopstand/1.png", alt: "CAD model and render",                       width: 1350, height: 1068 },
+      { src: "/images/projects/laptopstand/2.png", alt: "Setting up the CNC router",                  width: 2600, height: 1446 },
+      { src: "/images/projects/laptopstand/3.png", alt: "Cutting the wood on the CNC router",         width: 2576, height: 1340 },
+      { src: "/images/projects/laptopstand/4.png", alt: "Glueing the pieces together",                width: 2538, height: 1378 },
+      { src: "/images/projects/laptopstand/5.png", alt: "Finishing the surface with wood stain",      width: 2370, height: 1312 },
+      { src: "/images/projects/laptopstand/6.png", alt: "Finished laptop stand",                      width: 2658, height: 1496 },
+    ],
+  },
+  {
+    slug: "mechatronics",
+    title: "Mechatronics",
+    subtitle: "Sensors + actuators",
+    tags: ["ROBOTICS", "EMBEDDED"],
+    description: "Closed-loop control on embedded C.",
+    body: "A mechatronics project exploring closed-loop control systems — sensors feeding real-time data to a microcontroller running embedded C, driving actuators with precision. Built and tuned from scratch, including motor control, PID loops, and sensor fusion.",
+    thumbnail: { src: "/images/projects/mechatronics/mechatronics_thumbnail.jpg", alt: "Mechatronics rig", width: 1280, height: 1078 },
+    href: "/projects/mechatronics",
+    youtubeId: "WQ-gsW8HgsE",
+  },
+  {
+    slug: "timewise",
+    title: "TimeWise",
+    subtitle: "Student time-management app",
+    tags: ["UX", "PRODUCT", "MOBILE"],
+    description:
+      "A student-centered time management app that breaks assignments into doable tasks, adapts reminders, and makes progress easier to trust.",
+    body:
+      "TimeWise is a mobile productivity concept built around a simple promise: stop guessing, start doing. Designed for students who procrastinate because assignments feel vague or overwhelming, it translates coursework into smaller time estimates, visual progress, and focused work sessions.",
+    details: [
+      { label: "Context", value: "IPD 552 Problem Framing" },
+      { label: "Role", value: "Research, product strategy, UX/UI design" },
+      { label: "Focus", value: "Procrastination, planning confidence, student stress" },
+      { label: "Output", value: "Mobile app concept, prototype flows, validation artifacts" },
+    ],
+    sections: [
+      {
+        title: "Problem",
+        body:
+          "Students often know what is due, but not how long the work will actually take. That uncertainty makes assignments feel larger than they are, which feeds procrastination and stress.",
+      },
+      {
+        title: "Product Idea",
+        body:
+          "TimeWise reframes planning as an estimation-and-action loop. Students enter assignments, break them into smaller pieces, compare time expectations, and use a focused timer to move from planning into doing.",
+      },
+      {
+        title: "Design Direction",
+        body:
+          "The interface stays intentionally calm: soft color, clear course progress, lightweight controls, and reward-style feedback. The goal is to make time visible without making the app feel like another assignment.",
+      },
+    ],
+    thumbnail: {
+      src: "/images/projects/timewise/TimeWise.png",
+      alt: "TimeWise app screens and logo",
+      width: 5557,
+      height: 4320,
+    },
+    href: "/projects/timewise",
+    gifs: [
+      {
+        src: "/images/projects/timewise/Gifs/1_details.gif",
+        alt: "TimeWise assignment details flow",
+        title: "Assignment details",
+        caption: "Add course context, assignment scope, due date, and task breakdowns.",
+      },
+      {
+        src: "/images/projects/timewise/Gifs/2_sort.gif",
+        alt: "TimeWise sorting flow",
+        title: "Prioritize work",
+        caption: "Sort and compare coursework so the next task feels clear.",
+      },
+      {
+        src: "/images/projects/timewise/Gifs/3_timer.gif",
+        alt: "TimeWise focus timer flow",
+        title: "Focus timer",
+        caption: "Move from planning into a timed work session with pause and finish states.",
+      },
+    ],
+    images: [
+      {
+        src: "/images/projects/timewise/Context.png",
+        alt: "TimeWise project context",
+        width: 7680,
+        height: 4320,
+      },
+      {
+        src: "/images/projects/timewise/Research.png",
+        alt: "TimeWise research process",
+        width: 7680,
+        height: 4320,
+      },
+      {
+        src: "/images/projects/timewise/Insight 1.png",
+        alt: "TimeWise research insight 1",
+        width: 7680,
+        height: 4320,
+      },
+      {
+        src: "/images/projects/timewise/Insight 2.png",
+        alt: "TimeWise research insight 2",
+        width: 7680,
+        height: 4320,
+      },
+      {
+        src: "/images/projects/timewise/Insight 3.png",
+        alt: "TimeWise research insight 3",
+        width: 7680,
+        height: 4320,
+      },
+      {
+        src: "/images/projects/timewise/HMW_.png",
+        alt: "TimeWise how might we framing",
+        width: 7680,
+        height: 4320,
+      },
+      {
+        src: "/images/projects/timewise/Design Opportunity.png",
+        alt: "TimeWise design opportunity",
+        width: 7680,
+        height: 4320,
+      },
+      {
+        src: "/images/projects/timewise/Concept.png",
+        alt: "TimeWise concept",
+        width: 7680,
+        height: 4320,
+      },
+      {
+        src: "/images/projects/timewise/Differentiation.png",
+        alt: "TimeWise differentiation",
+        width: 7680,
+        height: 4320,
+      },
+      {
+        src: "/images/projects/timewise/Home-1.png",
+        alt: "TimeWise home screen",
+        width: 7680,
+        height: 4320,
+      },
+      {
+        src: "/images/projects/timewise/AI Calculator.png",
+        alt: "TimeWise assignment calculator",
+        width: 7680,
+        height: 4320,
+      },
+      {
+        src: "/images/projects/timewise/Timer.png",
+        alt: "TimeWise timer screen",
+        width: 7680,
+        height: 4320,
+      },
+      {
+        src: "/images/projects/timewise/Awards.png",
+        alt: "TimeWise awards screen",
+        width: 7680,
+        height: 4320,
+      },
+      {
+        src: "/images/projects/timewise/Feedback-1.png",
+        alt: "TimeWise feedback 1",
+        width: 7680,
+        height: 4320,
+      },
+      {
+        src: "/images/projects/timewise/Feedback-2.png",
+        alt: "TimeWise feedback 2",
+        width: 7680,
+        height: 4320,
+      },
+    ],
+  },
+];
