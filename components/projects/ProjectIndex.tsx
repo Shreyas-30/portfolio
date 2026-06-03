@@ -38,6 +38,23 @@ function PreviewImage({ project }: { project: Project }) {
   );
 }
 
+function ProjectTags({ tags }: { tags: string[] }) {
+  return (
+    <span className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[10px] uppercase leading-snug tracking-[0.14em] text-pencil sm:text-xs sm:tracking-[0.16em]">
+      {tags.map((tag, index) => (
+        <span key={tag} className="inline-flex items-center gap-x-2">
+          <span>{tag}</span>
+          {index < tags.length - 1 && (
+            <span className="text-pencil/55" aria-hidden="true">
+              ·
+            </span>
+          )}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 export function ProjectIndex({ projects }: { projects: Project[] }) {
   const reduce = useReducedMotion();
   const listRef = useRef<HTMLDivElement>(null);
@@ -172,9 +189,7 @@ export function ProjectIndex({ projects }: { projects: Project[] }) {
                 >
                   {project.title}
                 </span>
-                <span className="mt-2 block font-mono text-[11px] uppercase tracking-[0.16em] text-pencil sm:text-xs">
-                  {project.tags.join(" · ")}
-                </span>
+                <ProjectTags tags={project.tags} />
               </span>
               <span
                 className={`justify-self-end font-mono text-2xl transition-all duration-[400ms] ease-[cubic-bezier(.22,1,.36,1)] ${

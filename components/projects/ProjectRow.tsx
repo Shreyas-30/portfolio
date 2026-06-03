@@ -20,6 +20,7 @@ export function ProjectRow({
   const linkProps = project.external
     ? { href: project.href, target: "_blank", rel: "noopener noreferrer" }
     : { href: project.href };
+  const mobileTags = project.tags.slice(0, 2);
 
   return (
     <article className="grid grid-cols-1 items-center gap-8 md:grid-cols-[380px_1fr] md:gap-16 md:min-h-[285px]">
@@ -43,7 +44,8 @@ export function ProjectRow({
           <p className="kicker">
             <span className="font-semibold text-accent">{num}</span>
             <span className="mx-2 text-pencil/50">·</span>
-            {project.tags.join(" · ")}
+            <span className="sm:hidden">{mobileTags.join(" · ")}</span>
+            <span className="hidden sm:inline">{project.tags.join(" · ")}</span>
           </p>
           {project.year && (
             <span className="shrink-0 font-mono text-[11px] tracking-wide text-pencil">
