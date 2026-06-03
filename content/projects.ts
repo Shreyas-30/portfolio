@@ -126,7 +126,7 @@ export const projects: Project[] = [
     year: "FALL 2025",
     description:
       "Hand-cut gears, escapement and finished wood. No electronics.",
-    body: "A fully mechanical cuckoo clock built from scratch: every gear tooth hand-cut, the escapement tuned by feel, the case shaped and finished in wood. No microcontrollers, no servos. Just the physics of a swinging pendulum and falling weights keeping time.",
+    body: "A mechanical cuckoo clock built from scratch, powered entirely by falling weights. We laser-cut the gears, CNC-routed the wooden base, and built the rest from brass, sheet metal, aluminum tubing, wood, and acrylic. The sound comes from a handmade kalimba, so the whole thing works without microcontrollers or servos — just weight, movement, and a lot of careful tuning.",
     thumbnail: {
       src: "/images/projects/clock/thumbnail.jpg",
       alt: "Mechanical cuckoo clock",
