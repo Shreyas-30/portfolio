@@ -62,9 +62,11 @@ Everything is data-driven. Edit these files and entries appear automatically:
 | Name / intro / socials / email | `content/site.ts` |
 | Nav items | `content/nav.ts` |
 
-**Images:** drop files in `public/images/gallery/` (or a new folder under
-`public/images/`) and reference the path in the data file with its
-`width`/`height`. `next/image` handles responsive AVIF/WebP automatically.
+**Images:** group gallery files by trip under `public/images/gallery/`
+and reference them from `content/photos.ts`, for example
+`public/images/gallery/seattle-2025/01.jpg`. Add a collection entry with
+its title, year, description, and each photo's dimensions. `next/image`
+handles responsive AVIF/WebP automatically.
 The current photos are the owner's real shots; project thumbnails reuse
 landscape frames as stand-ins until dedicated project images are added.
 

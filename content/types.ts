@@ -81,3 +81,11 @@ export type Photo = ImageRef & {
   /** Optional caption / location for the gallery + lightbox. */
   caption?: string;
 };
+
+export type PhotoCollection = {
+  slug: string;
+  title: string;
+  year: string;
+  description?: string;
+  photos: Photo[];
+};
