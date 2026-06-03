@@ -2,6 +2,7 @@
 
 export const site = {
   name: "Shreyas Kulkarni",
+  url: "https://www.kshreyas.com",
   intro:
     "I am a curious builder drawn to meaningful problems, delightful details, and ideas that move between the physical and digital world.",
   email: "shreyask3004@gmail.com",

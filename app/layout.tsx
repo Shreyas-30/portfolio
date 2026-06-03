@@ -5,13 +5,37 @@ import { GrainOverlay } from "@/components/GrainOverlay";
 import { site } from "@/content/site";
 import "./globals.css";
 
+const title = `${site.name} — Portfolio`;
+const description =
+  "Curious builder creating meaningful physical and digital products, from AI apps and product systems to machining, mechatronics, and industrial design.";
+
 export const metadata: Metadata = {
-  title: `${site.name} — Portfolio`,
-  description: site.intro,
+  metadataBase: new URL(site.url),
+  title,
+  description,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: `${site.name} — Portfolio`,
-    description: site.intro,
+    title,
+    description,
+    url: "/",
+    siteName: site.name,
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} portfolio preview`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/opengraph-image"],
   },
 };
 

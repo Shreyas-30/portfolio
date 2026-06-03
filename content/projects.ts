@@ -128,14 +128,20 @@ export const projects: Project[] = [
       "Hand-cut gears, escapement and finished wood. No electronics.",
     body: "A fully mechanical cuckoo clock built from scratch: every gear tooth hand-cut, the escapement tuned by feel, the case shaped and finished in wood. No microcontrollers, no servos. Just the physics of a swinging pendulum and falling weights keeping time.",
     thumbnail: {
-      src: "/images/projects/clock/2.jpg",
+      src: "/images/projects/clock/thumbnail.jpg",
       alt: "Mechanical cuckoo clock",
-      width: 1280,
-      height: 803,
+      width: 2564,
+      height: 2631,
     },
     previewTilt: -9,
     href: "/projects/mechanical-cuckoo-clock",
     images: [
+      {
+        src: "/images/projects/clock/0.jpg",
+        alt: "Mechanical cuckoo clock hero image",
+        width: 3411,
+        height: 5116,
+      },
       {
         src: "/images/projects/clock/1.jpg",
         alt: "Clock assembly",
