@@ -205,6 +205,193 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "space-chess",
+    title: "Space Chess",
+    subtitle: "Machined chess set",
+    tags: ["MECHANICAL", "MACHINING", "FABRICATION", "CMF"],
+    year: "FALL 2025",
+    description:
+      "Walnut, aluminium, brass, acrylic. CNC lathe, CNC router, laser cutting, anodization. Built with three teammates over a semester.",
+    body: "Space Chess is a material-driven chess set that reimagines a familiar game as something tactile, sculptural, and slightly otherworldly. We combined CNC-turned aluminum and brass pieces with a routed walnut board, laser-cut acrylic, sheet metal details, and anodized finishes.",
+    details: [
+      { label: "Course", value: "IPD 5010" },
+      {
+        label: "Machines",
+        value: "Haas TL-1 lathe · CNC router · Laser cutter",
+      },
+      { label: "Materials", value: "Walnut · Aluminium · Brass · Acrylic" },
+      {
+        label: "Finishing",
+        value: "Polishing · Anodization · Wood stain & coating",
+      },
+    ],
+    sections: [
+      {
+        title: "The pieces",
+        body: "Each piece is a three-part assembly: a common aluminium base, a turned body, and a top that changes per piece type. We turned everything on the Haas TL-1. The brass bottoms give them real weight when you pick them up. For the light set we laser-cut white acrylic crowns; the dark set went through anodization which gave them this really satisfying uniform black. Getting the threading right took a few iterations, we had to add height and adjust diameters before the tap and die would work reliably.",
+      },
+      {
+        title: "The board",
+        body: 'We glued up walnut stock, planed it flat, then ran it through the Tangen CNC router to cut the square grid and border geometry. The routing alone took about 12 hours with a ⅛" ball nose end mill. The edges where the aluminium sheets sit had to be hand-chiselled to get a clean fit. Finished it all with stain and a coat of sealant.',
+      },
+      {
+        title: "What I learned",
+        body: "CAM for a router is a different beast from lathe work. We had to split the roughing into sections to avoid stressing thin areas, and I learned the hard way that engraving depth needs to account for how much material you lose when deburring. Overall though, getting to work across that many processes in one project was exactly the kind of hands-on learning I came to Penn for.",
+      },
+    ],
+    thumbnail: {
+      src: "/images/projects/spacechess/thumbnail.JPG",
+      alt: "Space Chess — machined chess set",
+      width: 7008,
+      height: 4672,
+    },
+    previewTilt: -3,
+    href: "/projects/space-chess",
+    images: [
+      {
+        src: "/images/projects/spacechess/0.png",
+        alt: "Space Chess — slide 1",
+        width: 960,
+        height: 540,
+      },
+      {
+        src: "/images/projects/spacechess/1.png",
+        alt: "Space Chess — slide 2",
+        width: 960,
+        height: 540,
+      },
+      {
+        src: "/images/projects/spacechess/2.png",
+        alt: "Space Chess — slide 3",
+        width: 960,
+        height: 540,
+      },
+      {
+        src: "/images/projects/spacechess/3.png",
+        alt: "Space Chess — slide 4",
+        width: 960,
+        height: 540,
+      },
+      {
+        src: "/images/projects/spacechess/4.png",
+        alt: "Space Chess — slide 5",
+        width: 960,
+        height: 540,
+      },
+      {
+        src: "/images/projects/spacechess/5.png",
+        alt: "Space Chess — slide 6",
+        width: 960,
+        height: 540,
+      },
+      {
+        src: "/images/projects/spacechess/6.png",
+        alt: "Space Chess — slide 7",
+        width: 960,
+        height: 540,
+      },
+      {
+        src: "/images/projects/spacechess/7.png",
+        alt: "Space Chess — slide 8",
+        width: 960,
+        height: 540,
+      },
+      {
+        src: "/images/projects/spacechess/8.png",
+        alt: "Space Chess — slide 9",
+        width: 960,
+        height: 540,
+      },
+      {
+        src: "/images/projects/spacechess/9.png",
+        alt: "Space Chess — slide 10",
+        width: 960,
+        height: 540,
+      },
+      {
+        src: "/images/projects/spacechess/10.png",
+        alt: "Space Chess — slide 11",
+        width: 960,
+        height: 540,
+      },
+      {
+        src: "/images/projects/spacechess/11.png",
+        alt: "Space Chess — slide 12",
+        width: 960,
+        height: 540,
+      },
+      {
+        src: "/images/projects/spacechess/12.png",
+        alt: "Space Chess — slide 13",
+        width: 960,
+        height: 540,
+      },
+    ],
+  },
+  {
+    slug: "birdie",
+    title: "Birdie",
+    subtitle: "Machined multitool",
+    tags: ["MECHANICAL", "MACHINING", "CAD"],
+    year: "FALL 2025",
+    description:
+      "A CNC-machined multitool with a 50mm ruler, bottle opener, and hex keys. Built on a Haas Mini Mill.",
+    body: "Birdie is a compact multitool machined from aluminium stock on a Haas Mini Mill. Three functions packed into one part: a 50mm ruler, a crown cap bottle opener, and hex key fits for M6, M5, and M4 fasteners. The project covered the full workflow from CAD design and GD&T tolerancing through CAM toolpath setup and hands-on machining, with careful attention to datum selection, feature tolerances, clamp placement, and surface finishing.",
+    details: [
+      { label: "Course", value: "IPD 5010" },
+      { label: "Machine", value: "Haas Mini Mill" },
+      {
+        label: "Functions",
+        value: "50mm ruler · bottle opener · M6/M5/M4 hex keys",
+      },
+      { label: "Material", value: "Aluminium stock" },
+    ],
+    sections: [
+      {
+        title: "Design & Tolerancing",
+        body: "The central hexagonal cutout was chosen as Datum A. Key locating features were assigned profile tolerances of 0.005 relative to that datum, surface straightness was called out on the ruler edge, and the hex key holes were dimensioned directly from bit sizes to ensure a tight, functional fit.",
+      },
+      {
+        title: "Machining Challenges",
+        body: "The main challenges were sizing holes precisely to bit dimensions, managing how bit rest plane height affects total machining time, planning clamp placement to keep the stock properly aligned during each operation, and accounting for material removal during deburring when setting engraving depth.",
+      },
+    ],
+    thumbnail: {
+      src: "/images/projects/birdie/thumbmail.JPG",
+      alt: "Birdie multitool — machined aluminium",
+      width: 6000,
+      height: 4000,
+    },
+    previewTilt: 4,
+    href: "/projects/birdie",
+    images: [
+      {
+        src: "/images/projects/birdie/1.png",
+        alt: "Birdie — slide 1",
+        width: 960,
+        height: 540,
+      },
+      {
+        src: "/images/projects/birdie/2.png",
+        alt: "Birdie — slide 2",
+        width: 960,
+        height: 540,
+      },
+      {
+        src: "/images/projects/birdie/3.png",
+        alt: "Birdie — slide 3",
+        width: 960,
+        height: 540,
+      },
+      {
+        src: "/images/projects/birdie/4.png",
+        alt: "Birdie — slide 4",
+        width: 960,
+        height: 540,
+      },
+    ],
+  },
+  {
     slug: "amtrak-rebooked",
     title: "Amtrak Rebooked",
     subtitle: "Rail booking redesign",
