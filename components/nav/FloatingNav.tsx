@@ -15,6 +15,7 @@ export function FloatingNav() {
   const pathname = usePathname();
   const reduce = useReducedMotion();
   const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
@@ -81,6 +82,7 @@ export function FloatingNav() {
   );
 
   const isActive = (href: string) => {
+    if (href.includes("#")) return false;
     const route = href.split("#")[0] || "/";
     if (route === "/") return pathname === "/";
     return pathname.startsWith(route);
@@ -89,7 +91,7 @@ export function FloatingNav() {
   return (
     <motion.nav
       aria-label="Primary"
-      className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2"
+      className="fixed inset-x-3 bottom-4 z-50 sm:inset-x-auto sm:left-1/2 sm:bottom-5 sm:-translate-x-1/2"
       initial={false}
       animate={reduce ? {} : { y: [0, -5, 0] }}
       transition={
@@ -102,12 +104,32 @@ export function FloatingNav() {
         ref={containerRef}
         onMouseMove={followPointer}
         onMouseLeave={hideCursor}
-        className="relative flex items-center gap-1 overflow-hidden rounded-full border border-ink/15 bg-paper/90 px-2 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.16)] backdrop-blur-sm"
+        className="relative mx-auto w-[min(22rem,100%)] overflow-hidden rounded-[1.75rem] border border-ink/15 bg-paper/92 shadow-[0_10px_30px_rgba(0,0,0,0.16)] backdrop-blur-sm sm:mx-0 sm:w-auto sm:flex sm:items-center sm:gap-1 sm:rounded-full sm:bg-paper/90 sm:px-2 sm:py-2"
       >
+        <button
+          type="button"
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-primary-nav"
+          onClick={() => setMobileOpen((open) => !open)}
+          className="relative z-10 grid h-14 w-full grid-cols-[1fr_auto] items-center rounded-full px-5 font-mono text-[13px] tracking-wide text-ink sm:hidden"
+        >
+          <span className="flex h-6 translate-y-[3px] items-center leading-[1]">
+            Menu
+          </span>
+          <motion.span
+            aria-hidden="true"
+            animate={reduce ? {} : { rotate: mobileOpen ? 45 : 0 }}
+            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+            className="flex h-6 w-6 translate-y-[3px] items-center justify-center text-[22px] leading-[1] text-accent"
+          >
+            +
+          </motion.span>
+        </button>
+
         {!reduce && (
           <motion.span
             aria-hidden="true"
-            className="pointer-events-none absolute z-0 rounded-full bg-ink/[0.075] backdrop-blur-[1.5px]"
+            className="pointer-events-none absolute z-0 hidden rounded-full bg-ink/[0.075] backdrop-blur-[1.5px] sm:block"
             style={{
               left: springCursorX,
               top: springCursorY,
@@ -118,40 +140,76 @@ export function FloatingNav() {
           />
         )}
 
-        {navItems.map((item) => {
-          const active = isActive(item.href);
-          const isHovered = hoveredLabel === item.label;
+        <motion.div
+          id="mobile-primary-nav"
+          aria-hidden={!mobileOpen}
+          initial={false}
+          animate={
+            mobileOpen
+              ? { height: "auto", opacity: 1 }
+              : { height: 0, opacity: 0 }
+          }
+          transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+          className={`grid grid-cols-3 gap-1 px-2 pb-2 sm:hidden ${
+            mobileOpen ? "pointer-events-auto" : "pointer-events-none"
+          }`}
+        >
+          {navItems.map((item) => {
+            const active = isActive(item.href);
 
-          return (
-            <Link
-              key={item.label}
-              href={item.href}
-              aria-current={active ? "page" : undefined}
-              ref={(el) => {
-                itemRefs.current[item.label] = el;
-              }}
-              onMouseEnter={() => {
-                setHoveredLabel(item.label);
-                updateCursor(item.label);
-              }}
-              onMouseMove={() => updateCursor(item.label)}
-              onMouseLeave={(event) => {
-                setHoveredLabel(null);
-                setCircleAtPointer(event.clientX, event.clientY);
-              }}
-              onFocus={() => {
-                setHoveredLabel(item.label);
-                updateCursor(item.label);
-              }}
-              onBlur={hideCursor}
-              className={`relative z-10 inline-flex min-h-11 items-center rounded-full px-3.5 py-2 font-mono text-[13px] tracking-wide transition-colors duration-150 ${
-                active || isHovered ? "text-ink" : "text-pencil"
-              }`}
-            >
-              {item.label}
-            </Link>
-          );
-        })}
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                onClick={() => setMobileOpen(false)}
+                tabIndex={mobileOpen ? 0 : -1}
+                className={`relative z-10 inline-flex min-h-11 items-center justify-center rounded-full px-3 py-2 text-center font-mono text-[12px] tracking-wide transition-colors duration-150 ${
+                  active ? "bg-ink/[0.06] text-ink" : "text-pencil"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </motion.div>
+
+        <div className="hidden items-center gap-1 sm:flex">
+          {navItems.map((item) => {
+            const active = isActive(item.href);
+            const isHovered = hoveredLabel === item.label;
+
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                ref={(el) => {
+                  itemRefs.current[item.label] = el;
+                }}
+                onMouseEnter={() => {
+                  setHoveredLabel(item.label);
+                  updateCursor(item.label);
+                }}
+                onMouseMove={() => updateCursor(item.label)}
+                onMouseLeave={(event) => {
+                  setHoveredLabel(null);
+                  setCircleAtPointer(event.clientX, event.clientY);
+                }}
+                onFocus={() => {
+                  setHoveredLabel(item.label);
+                  updateCursor(item.label);
+                }}
+                onBlur={hideCursor}
+                className={`relative z-10 inline-flex min-h-11 items-center rounded-full px-3.5 py-2 font-mono text-[13px] tracking-wide transition-colors duration-150 ${
+                  active || isHovered ? "text-ink" : "text-pencil"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </motion.nav>
   );

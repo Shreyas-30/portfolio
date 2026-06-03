@@ -118,7 +118,7 @@ export function PhotoWall({ tiles }: { tiles: HeroTile[] }) {
                   fill
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 50vw"
                   className="object-cover"
-                  priority={slot < 4}
+                  priority={slot < 6}
                 />
                 {tile.accent && (
                   <span
