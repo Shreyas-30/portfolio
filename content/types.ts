@@ -35,9 +35,15 @@ export type Project = {
   details?: { label: string; value: string }[];
   /** Case-study sections shown below the overview. */
   sections?: { title: string; body: string }[];
+  /** Year the project was completed / shipped, shown on the work page. */
+  year?: string;
   thumbnail: ImageRef;
   /** How the thumbnail should fit inside fixed project frames. */
   thumbnailFit?: "cover" | "contain";
+  /** Background colour shown behind a contained thumbnail (hex / CSS colour). */
+  thumbnailBg?: string;
+  /** Resting rotation for homepage hover preview cards, in degrees. */
+  previewTilt?: number;
   /** Additional images shown as a gallery on the detail page. */
   images?: ImageRef[];
   /** Local demo videos under /public, rendered as looping muted clips. */
@@ -74,24 +80,4 @@ export type Photo = ImageRef & {
   id: string;
   /** Optional caption / location for the gallery + lightbox. */
   caption?: string;
-};
-
-export type NowSource =
-  | "blog"
-  | "github"
-  | "instagram"
-  | "twitter"
-  | "letterboxd"
-  | "mastodon";
-
-export type NowItem = {
-  /** Globally unique, stable id (source-prefixed). */
-  id: string;
-  source: NowSource;
-  title: string;
-  excerpt?: string;
-  url: string;
-  /** ISO 8601 timestamp. */
-  timestamp: string;
-  thumbnail?: ImageRef;
 };

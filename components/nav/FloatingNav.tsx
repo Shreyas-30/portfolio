@@ -4,7 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useReducedMotion, useMotionValue, useSpring } from "motion/react";
 import { navItems } from "@/content/nav";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useCallback, useRef, useState } from "react";
+import type { MouseEvent } from "react";
+
+const CURSOR_SIZE = 40;
+const clamp = (value: number, min: number, max: number) =>
+  Math.min(Math.max(value, min), max);
 
 export function FloatingNav() {
   const pathname = usePathname();
@@ -14,35 +19,66 @@ export function FloatingNav() {
   const containerRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
-  // Spring-animated highlight: position + width + opacity
-  const hx = useMotionValue(0);
-  const hw = useMotionValue(0);
-  const ho = useMotionValue(0);
-  const springX = useSpring(hx, { stiffness: 420, damping: 30, mass: 0.5 });
-  const springW = useSpring(hw, { stiffness: 420, damping: 30, mass: 0.5 });
-  const springO = useSpring(ho, { stiffness: 300, damping: 28 });
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+  const cursorW = useMotionValue(CURSOR_SIZE);
+  const cursorH = useMotionValue(CURSOR_SIZE);
+  const opacity = useMotionValue(0);
+  const springCursorX = useSpring(cursorX, { stiffness: 360, damping: 38, mass: 0.72 });
+  const springCursorY = useSpring(cursorY, { stiffness: 360, damping: 38, mass: 0.72 });
+  const springCursorW = useSpring(cursorW, { stiffness: 420, damping: 40, mass: 0.6 });
+  const springCursorH = useSpring(cursorH, { stiffness: 420, damping: 40, mass: 0.6 });
+  const springOpacity = useSpring(opacity, { stiffness: 260, damping: 30 });
 
-  const updateHighlight = useCallback(
+  const hideCursor = useCallback(() => {
+    setHoveredLabel(null);
+    opacity.set(0);
+  }, [opacity]);
+
+  const setCircleAtPointer = useCallback(
+    (clientX: number, clientY: number) => {
+      if (reduce || !containerRef.current) return;
+
+      const cr = containerRef.current.getBoundingClientRect();
+      cursorX.set(
+        clamp(clientX - cr.left - CURSOR_SIZE / 2, 0, cr.width - CURSOR_SIZE),
+      );
+      cursorY.set(
+        clamp(clientY - cr.top - CURSOR_SIZE / 2, 0, cr.height - CURSOR_SIZE),
+      );
+      cursorW.set(CURSOR_SIZE);
+      cursorH.set(CURSOR_SIZE);
+      opacity.set(1);
+    },
+    [cursorH, cursorW, cursorX, cursorY, opacity, reduce],
+  );
+
+  const followPointer = useCallback(
+    (event: MouseEvent<HTMLDivElement>) => {
+      if (hoveredLabel) return;
+      setCircleAtPointer(event.clientX, event.clientY);
+    },
+    [hoveredLabel, setCircleAtPointer],
+  );
+
+  const updateCursor = useCallback(
     (label: string | null) => {
-      if (!label || !containerRef.current) {
-        ho.set(0);
-        return;
-      }
+      if (reduce || !label || !containerRef.current) return;
+
       const el = itemRefs.current[label];
       const container = containerRef.current;
       if (!el) return;
+
       const cr = container.getBoundingClientRect();
       const er = el.getBoundingClientRect();
-      hx.set(er.left - cr.left);
-      hw.set(er.width);
-      ho.set(1);
+      cursorX.set(er.left - cr.left);
+      cursorY.set(er.top - cr.top);
+      cursorW.set(er.width);
+      cursorH.set(er.height);
+      opacity.set(1);
     },
-    [hx, hw, ho],
+    [cursorH, cursorW, cursorX, cursorY, opacity, reduce],
   );
-
-  useEffect(() => {
-    updateHighlight(hoveredLabel);
-  }, [hoveredLabel, updateHighlight]);
 
   const isActive = (href: string) => {
     const route = href.split("#")[0] || "/";
@@ -64,36 +100,23 @@ export function FloatingNav() {
     >
       <div
         ref={containerRef}
-        className="relative flex items-center gap-1 rounded-full border border-ink/15 bg-paper/90 px-2 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.16)] backdrop-blur-sm"
+        onMouseMove={followPointer}
+        onMouseLeave={hideCursor}
+        className="relative flex items-center gap-1 overflow-hidden rounded-full border border-ink/15 bg-paper/90 px-2 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.16)] backdrop-blur-sm"
       >
-        {/* Sliding cobalt highlight — follows the cursor between items */}
         {!reduce && (
           <motion.span
             aria-hidden="true"
-            className="pointer-events-none absolute inset-y-2 rounded-full bg-accent/[0.14]"
-            style={{ left: springX, width: springW, opacity: springO }}
+            className="pointer-events-none absolute z-0 rounded-full bg-ink/[0.075] backdrop-blur-[1.5px]"
+            style={{
+              left: springCursorX,
+              top: springCursorY,
+              width: springCursorW,
+              height: springCursorH,
+              opacity: springOpacity,
+            }}
           />
         )}
-
-        {/* Pulsating dot — stops pulsing while nav is in use */}
-        <motion.span
-          aria-hidden="true"
-          className="relative z-10 ml-2 mr-1 h-2.5 w-2.5 flex-none rounded-full bg-accent"
-          animate={
-            reduce
-              ? {}
-              : hoveredLabel
-              ? { scale: 1, opacity: 0.6 }
-              : { scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }
-          }
-          transition={
-            reduce
-              ? undefined
-              : hoveredLabel
-              ? { duration: 0.2 }
-              : { duration: 1.8, repeat: Infinity, ease: "easeInOut" }
-          }
-        />
 
         {navItems.map((item) => {
           const active = isActive(item.href);
@@ -107,8 +130,20 @@ export function FloatingNav() {
               ref={(el) => {
                 itemRefs.current[item.label] = el;
               }}
-              onMouseEnter={() => setHoveredLabel(item.label)}
-              onMouseLeave={() => setHoveredLabel(null)}
+              onMouseEnter={() => {
+                setHoveredLabel(item.label);
+                updateCursor(item.label);
+              }}
+              onMouseMove={() => updateCursor(item.label)}
+              onMouseLeave={(event) => {
+                setHoveredLabel(null);
+                setCircleAtPointer(event.clientX, event.clientY);
+              }}
+              onFocus={() => {
+                setHoveredLabel(item.label);
+                updateCursor(item.label);
+              }}
+              onBlur={hideCursor}
               className={`relative z-10 inline-flex min-h-11 items-center rounded-full px-3.5 py-2 font-mono text-[13px] tracking-wide transition-colors duration-150 ${
                 active || isHovered ? "text-ink" : "text-pencil"
               }`}

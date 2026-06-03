@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer
       id="contact"
-      className="mx-auto w-full max-w-6xl scroll-mt-24 border-t border-ink/20 px-6 pb-32 pt-16 sm:px-10"
+      className="mx-auto w-full max-w-6xl scroll-mt-24 px-6 pb-32 pt-16 sm:px-10"
     >
       <p className="font-display text-4xl font-semibold leading-tight sm:text-5xl">
         Let&rsquo;s make something.

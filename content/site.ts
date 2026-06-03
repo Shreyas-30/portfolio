@@ -2,12 +2,14 @@
 
 export const site = {
   name: "Shreyas Kulkarni",
-  kicker: "PORTFOLIO · 2026",
   intro:
-    "Engineering × Design × Business — I build things meant to drive real, meaningful change.",
+    "I am a curious builder drawn to meaningful problems, delightful details, and ideas that move between the physical and digital world.",
   email: "shreyask3004@gmail.com",
   socials: [
-    { label: "Instagram", href: "https://www.instagram.com/_shreyas.kulkarni/" },
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/_shreyas.kulkarni/",
+    },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/kul-shreyas/" },
     { label: "GitHub", href: "https://github.com/Shreyas-30/" },
     { label: "Email", href: "mailto:shreyask3004@gmail.com" },

@@ -13,7 +13,6 @@ export function NameCard() {
       className={`absolute z-10 max-w-[min(34rem,82%)] ${POSITION[HERO_NAME_POSITION]}`}
     >
       <div className="rounded-xl border border-ink/15 bg-paper/90 px-6 py-6 shadow-[0_12px_36px_rgba(0,0,0,0.18)] backdrop-blur-sm sm:px-8 sm:py-7">
-        <p className="kicker mb-3">{site.kicker}</p>
         <h1 className="font-display text-5xl font-semibold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
           {site.name}
         </h1>

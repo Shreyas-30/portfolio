@@ -1,7 +1,12 @@
+import Link from "next/link";
 import { projects } from "@/content/projects";
-import { ProjectRow } from "./ProjectRow";
+import { ProjectIndex } from "./ProjectIndex";
+
+const FEATURED_COUNT = 5;
 
 export function ProjectList() {
+  const featured = projects.slice(0, FEATURED_COUNT);
+
   return (
     <section
       id="work"
@@ -12,14 +17,24 @@ export function ProjectList() {
         Projects<span className="text-accent">.</span>
       </h2>
 
-      <hr className="mt-6 border-t border-ink/20" />
+      <div className="mt-6">
+        <ProjectIndex projects={featured} />
+      </div>
 
-      <div className="divide-y divide-ink/15">
-        {projects.map((project, i) => (
-          <div key={project.slug} className="py-16 sm:py-20">
-            <ProjectRow project={project} index={i} />
-          </div>
-        ))}
+      {/* See all work CTA — sits flush below the last list border */}
+      <div className="flex items-center justify-between border-b border-ink/15 py-6">
+        <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-pencil">
+          {projects.length} projects total
+        </span>
+        <Link
+          href="/work"
+          className="group/link inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.14em] text-ink transition-colors hover:text-accent"
+        >
+          View all work
+          <span className="inline-block transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5">
+            ↗
+          </span>
+        </Link>
       </div>
     </section>
   );

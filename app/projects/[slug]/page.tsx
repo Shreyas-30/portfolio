@@ -44,12 +44,15 @@ export default async function ProjectPage({
       </header>
 
       {/* Hero thumbnail */}
-      <div className="relative mt-8 aspect-[4/3] w-full overflow-hidden rounded-lg bg-paper-2">
+      <div
+        className="relative mt-8 aspect-[4/3] w-full overflow-hidden rounded-lg bg-paper-2"
+        style={project.thumbnailBg ? { backgroundColor: project.thumbnailBg } : undefined}
+      >
         <Image
           {...imageFill(project.thumbnail)}
           fill
           sizes="(max-width: 768px) 100vw, 768px"
-          className={thumbnailFit}
+          className={`${thumbnailFit}${project.thumbnailFit === "contain" ? " scale-[1.08]" : ""}`}
           priority
         />
       </div>
@@ -179,32 +182,43 @@ export default async function ProjectPage({
 
       {project.videos && project.videos.length > 0 && (
         <section className="mt-14">
-          <p className="kicker mb-6">product flows</p>
-          <div className="grid gap-5 lg:grid-cols-3">
-            {project.videos.map((video) => (
-              <figure key={video.src} className="overflow-hidden rounded-lg bg-paper-2">
-                <div className="relative aspect-[9/16] overflow-hidden bg-paper-2">
-                  <video
-                    className="absolute inset-0 h-full w-full object-contain [clip-path:inset(0_7.5%_0_7.5%_round_2.7rem)]"
-                    src={video.src}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    controls
-                  />
+          <p className="kicker mb-10">product flows</p>
+          <div className="space-y-20">
+            {project.videos.map((video, i) => (
+              <div
+                key={video.src}
+                className="grid grid-cols-1 items-center gap-8 md:grid-cols-[260px_1fr] md:gap-14"
+              >
+                {/* Phone video */}
+                <div className="relative mx-auto w-full max-w-[260px]">
+                  <div
+                    className="relative aspect-[9/16] overflow-hidden"
+                    style={{ clipPath: "inset(0 0 0 0 round 4rem)" }}
+                  >
+                    <video
+                      className="absolute inset-0 h-full w-full object-contain"
+                      src={video.src}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    />
+                  </div>
                 </div>
-                <figcaption className="px-4 py-3">
-                  <p className="font-mono text-[11px] uppercase tracking-wide text-pencil">
+
+                {/* Text */}
+                <div>
+                  <p className="kicker text-accent">{String(i + 1).padStart(2, "0")}</p>
+                  <h3 className="mt-2 font-display text-3xl font-semibold leading-tight sm:text-4xl">
                     {video.title}
-                  </p>
+                  </h3>
                   {video.caption && (
-                    <p className="mt-1 text-sm leading-relaxed text-ink/75">
+                    <p className="mt-4 max-w-prose text-base leading-relaxed text-ink/75">
                       {video.caption}
                     </p>
                   )}
-                </figcaption>
-              </figure>
+                </div>
+              </div>
             ))}
           </div>
         </section>

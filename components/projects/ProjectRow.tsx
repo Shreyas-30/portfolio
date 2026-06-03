@@ -15,7 +15,7 @@ export function ProjectRow({
   const Wrapper = project.external ? "a" : Link;
   const imageFit =
     project.thumbnailFit === "contain"
-      ? "object-contain"
+      ? "object-contain scale-[1.08]"
       : "object-cover transition-transform duration-500 ease-out group-hover:scale-105";
   const linkProps = project.external
     ? { href: project.href, target: "_blank", rel: "noopener noreferrer" }
@@ -24,22 +24,33 @@ export function ProjectRow({
   return (
     <article className="grid grid-cols-1 items-center gap-8 md:grid-cols-[380px_1fr] md:gap-16 md:min-h-[285px]">
       {/* Thumbnail — always left */}
-      <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-paper-2">
+      <div
+        className="group relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-paper-2"
+        style={project.thumbnailBg ? { backgroundColor: project.thumbnailBg } : undefined}
+      >
         <Image
           {...imageFill(project.thumbnail)}
           fill
           sizes="(max-width: 768px) 100vw, 380px"
           className={imageFit}
+          priority={index < 2}
         />
       </div>
 
       {/* Text — always right */}
       <div>
-        <p className="kicker">
-          <span className="font-semibold text-accent">{num}</span>
-          <span className="mx-2 text-pencil/50">·</span>
-          {project.tags.join(" · ")}
-        </p>
+        <div className="flex items-baseline justify-between gap-4">
+          <p className="kicker">
+            <span className="font-semibold text-accent">{num}</span>
+            <span className="mx-2 text-pencil/50">·</span>
+            {project.tags.join(" · ")}
+          </p>
+          {project.year && (
+            <span className="shrink-0 font-mono text-[11px] tracking-wide text-pencil">
+              {project.year}
+            </span>
+          )}
+        </div>
         <h3 className="mt-2 font-display text-3xl font-semibold leading-tight sm:text-4xl">
           {project.title}
         </h3>
