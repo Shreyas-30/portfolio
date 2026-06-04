@@ -27,11 +27,15 @@ export default async function ProjectPage({
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
-  const thumbnailFit = project.thumbnailFit === "contain" ? "object-contain" : "object-cover";
+  const thumbnailFit =
+    project.thumbnailFit === "contain" ? "object-contain" : "object-cover";
 
   return (
     <main className="relative z-[2] mx-auto w-full max-w-5xl px-6 pb-32 pt-20 sm:px-10">
-      <Link href="/#work" className="font-mono text-[13px] text-pencil hover:text-accent">
+      <Link
+        href="/#work"
+        className="font-mono text-[13px] text-pencil hover:text-accent"
+      >
         ← back to work
       </Link>
 
@@ -46,7 +50,11 @@ export default async function ProjectPage({
       {/* Hero thumbnail */}
       <div
         className="relative mt-8 aspect-[4/3] w-full overflow-hidden rounded-lg bg-paper-2"
-        style={project.thumbnailBg ? { backgroundColor: project.thumbnailBg } : undefined}
+        style={
+          project.thumbnailBg
+            ? { backgroundColor: project.thumbnailBg }
+            : undefined
+        }
       >
         <Image
           {...imageFill(project.thumbnail)}
@@ -97,7 +105,7 @@ export default async function ProjectPage({
         <section className="mt-10 rounded-lg border border-ink/15 bg-paper-2/70 p-4 sm:p-5">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="kicker">try the prototype</p>
+              <p className="kicker">LAUNCHED IN PUBLIC BETA</p>
               <h2 className="mt-2 font-display text-2xl font-semibold leading-tight">
                 Download SpeakEasy
               </h2>
@@ -208,7 +216,9 @@ export default async function ProjectPage({
 
                 {/* Text */}
                 <div>
-                  <p className="kicker text-accent">{String(i + 1).padStart(2, "0")}</p>
+                  <p className="kicker text-accent">
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
                   <h3 className="mt-2 font-display text-3xl font-semibold leading-tight sm:text-4xl">
                     {video.title}
                   </h3>
@@ -271,7 +281,10 @@ export default async function ProjectPage({
 
       {/* YouTube embed */}
       {project.youtubeId && (
-        <div className="mt-10 overflow-hidden rounded-lg bg-paper-2" style={{ aspectRatio: "16/9" }}>
+        <div
+          className="mt-10 overflow-hidden rounded-lg bg-paper-2"
+          style={{ aspectRatio: "16/9" }}
+        >
           <iframe
             src={`https://www.youtube.com/embed/${project.youtubeId}`}
             title={`${project.title} — video`}
@@ -308,10 +321,10 @@ export default async function ProjectPage({
         !project.sections &&
         !project.videos &&
         !project.gifs && (
-        <p className="mt-6 font-mono text-[13px] text-pencil">
-          Full case study coming soon.
-        </p>
-      )}
+          <p className="mt-6 font-mono text-[13px] text-pencil">
+            Full case study coming soon.
+          </p>
+        )}
     </main>
   );
 }

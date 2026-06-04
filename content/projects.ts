@@ -22,7 +22,7 @@ export const projects: Project[] = [
     sections: [
       {
         title: "Problem",
-        body: "Most limited-English-proficiency demand exists beyond school age, yet formal ESL classes are hard to access. The presentation framed the core barriers as awareness, time, and transportation. SpeakEasy responds by moving practice into a habit many learners already have: reading and scrolling through everyday content.",
+        body: "We wanted to design for adult English learners who need more practice but often cannot fit formal ESL classes into everyday life. The barriers are very practical: finding the right class, making time for it, getting there, and keeping up with it consistently. SpeakEasy approaches that problem by bringing practice into something many people already do every day: reading and scrolling through content that actually interests them.",
       },
       {
         title: "Product Idea",
