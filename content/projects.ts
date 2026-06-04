@@ -131,8 +131,8 @@ export const projects: Project[] = [
     tags: ["MECHANICAL", "CAD", "MACHINING", "FABRICATION", "CMF"],
     year: "FALL 2025",
     description:
-      "Hand-cut gears, escapement and finished wood. No electronics.",
-    body: "A mechanical cuckoo clock built from scratch, powered entirely by falling weights. We laser-cut the gears, CNC-routed the wooden base, and built the rest from brass, sheet metal, aluminum tubing, wood, and acrylic. The sound comes from a handmade kalimba, so the whole thing works without microcontrollers or servos — just weight, movement, and a lot of careful tuning.",
+      "A fully mechanical clock built with laser-cut gears, a CNC-routed wooden base, and a handmade kalimba for sound.",
+    body: "A mechanical cuckoo clock built from scratch, powered entirely by falling weights. We laser-cut the gears, CNC-routed the wooden base, 3D printed face and built the rest from brass, sheet metal, aluminum tubing, wood, and acrylic. The sound comes from a handmade kalimba, so the whole thing works without microcontrollers or servos — just weight, movement, and a lot of careful tuning.",
     thumbnail: {
       src: "/images/projects/clock/thumbnail.jpg",
       alt: "Mechanical cuckoo clock",
@@ -579,21 +579,31 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "mechatronics",
-    title: "Mechatronics",
-    subtitle: "Sensors + actuators",
-    tags: ["ROBOTICS", "EMBEDDED"],
+    slug: "autonomous-battlebot",
+    title: "Autonomous Battlebot",
+    subtitle: "Mechatronics project",
+    tags: ["ROBOTICS", "EMBEDDED", "FABRICATION"],
     year: "SPRING 2025",
-    description: "Closed-loop control on embedded C.",
-    body: "A mechatronics project exploring closed-loop control systems: sensors feeding real-time data to a microcontroller running embedded C, driving actuators with precision. Built and tuned from scratch, including motor control, PID loops, and sensor fusion.",
+    description:
+      "An autonomous mini battlebot built around ESP32 control, ToF sensing, and rapid-fabricated mechanical parts.",
+    body: "Autonomous Battlebot is a small robotics platform built to sense, decide, and move without direct driver control. The bot uses an ESP32 microcontroller as the control layer, I2C communication for sensor integration, and time-of-flight sensors to detect nearby objects and react in real time. The chassis and mechanisms combined 3D-printed parts with laser-cut structural pieces, making it a compact exercise in embedded control, sensing, mechanical packaging, and fast physical iteration.",
+    details: [
+      { label: "Controller", value: "ESP32" },
+      { label: "Sensors", value: "I2C time-of-flight distance sensors" },
+      { label: "Fabrication", value: "3D printing · Laser cutting" },
+      {
+        label: "Focus",
+        value: "Mechatronics, autonomous sensing, control, and motion",
+      },
+    ],
     thumbnail: {
       src: "/images/projects/mechatronics/mechatronics_thumbnail.jpg",
-      alt: "Mechatronics rig",
+      alt: "Autonomous Battlebot robot",
       width: 1280,
       height: 1078,
     },
     previewTilt: 6,
-    href: "/projects/mechatronics",
+    href: "/projects/autonomous-battlebot",
     youtubeId: "WQ-gsW8HgsE",
   },
   {

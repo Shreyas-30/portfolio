@@ -2,10 +2,18 @@ import Link from "next/link";
 import { projects } from "@/content/projects";
 import { ProjectIndex } from "./ProjectIndex";
 
-const FEATURED_COUNT = 5;
+const FEATURED_PROJECT_SLUGS = [
+  "speakeasy",
+  "kiro",
+  "mechanical-cuckoo-clock",
+  "space-chess",
+  "autonomous-battlebot",
+];
 
 export function ProjectList() {
-  const featured = projects.slice(0, FEATURED_COUNT);
+  const featured = FEATURED_PROJECT_SLUGS.map((slug) =>
+    projects.find((project) => project.slug === slug),
+  ).filter((project) => project !== undefined);
 
   return (
     <section
