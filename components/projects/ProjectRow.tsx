@@ -23,10 +23,13 @@ export function ProjectRow({
   const mobileTags = project.tags.slice(0, 2);
 
   return (
-    <article className="grid grid-cols-1 items-center gap-8 md:grid-cols-[380px_1fr] md:gap-16 md:min-h-[285px]">
+    <Wrapper
+      {...linkProps}
+      className="group grid grid-cols-1 items-center gap-8 rounded-lg outline-none transition-opacity hover:opacity-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-paper md:grid-cols-[380px_1fr] md:gap-16 md:min-h-[285px]"
+    >
       {/* Thumbnail — always left */}
       <div
-        className="group relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-paper-2"
+        className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-paper-2"
         style={project.thumbnailBg ? { backgroundColor: project.thumbnailBg } : undefined}
       >
         <Image
@@ -59,16 +62,15 @@ export function ProjectRow({
         <p className="mt-3 max-w-[46ch] text-base leading-relaxed text-ink/80">
           {project.description}
         </p>
-        <Wrapper
-          {...linkProps}
-          className="group/link mt-5 inline-flex items-center gap-2 border-b-2 border-ink pb-0.5 font-mono text-[13px] tracking-wide text-ink transition-colors hover:border-accent hover:text-accent"
+        <span
+          className="mt-5 inline-flex items-center gap-2 border-b-2 border-ink pb-0.5 font-mono text-[13px] tracking-wide text-ink transition-colors group-hover:border-accent group-hover:text-accent"
         >
           view project
-          <span className="inline-block transition-transform duration-200 group-hover/link:translate-x-1 group-hover/link:-translate-y-1">
+          <span className="inline-block transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1">
             ↗
           </span>
-        </Wrapper>
+        </span>
       </div>
-    </article>
+    </Wrapper>
   );
 }

@@ -78,6 +78,12 @@ export const projects: Project[] = [
         },
       },
     ],
+    systemDesign: {
+      src: "/images/projects/speakeasy/systemdesign.jpg",
+      alt: "SpeakEasy system design diagram",
+      width: 5222,
+      height: 3000,
+    },
     videos: [
       {
         src: "/images/projects/speakeasy/onboarding.mov",

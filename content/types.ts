@@ -70,6 +70,8 @@ export type Project = {
     badge: ImageRef;
     qr: ImageRef;
   }[];
+  /** Architecture or system-design diagram shown as a full-width case-study asset. */
+  systemDesign?: ImageRef;
   /** External link or internal /projects/[slug]. */
   href: string;
   /** Open in a new tab? (external links). */

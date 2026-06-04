@@ -224,6 +224,19 @@ export default async function ProjectPage({
         </section>
       )}
 
+      {project.systemDesign && (
+        <section className="mt-14">
+          <p className="kicker">system design</p>
+          <div className="mt-6 overflow-hidden rounded-lg border border-ink/10 bg-paper-2">
+            <Image
+              {...imageProps(project.systemDesign)}
+              sizes="(max-width: 1024px) 100vw, 960px"
+              className="h-auto w-full"
+            />
+          </div>
+        </section>
+      )}
+
       {project.gifs && project.gifs.length > 0 && (
         <section className="mt-14">
           <p className="kicker mb-6">product flows</p>
