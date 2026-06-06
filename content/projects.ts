@@ -404,7 +404,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "amtrak-rebooked",
+    slug: "amtrak",
     title: "Amtrak Rebooked",
     subtitle: "Rail booking redesign",
     tags: ["UX", "RESEARCH", "SERVICE DESIGN", "PRODUCT"],
@@ -418,7 +418,7 @@ export const projects: Project[] = [
       height: 1000,
     },
     previewTilt: 7,
-    href: "/work/amtrak-rebooked",
+    href: "/work/amtrak",
     images: [
       {
         src: "/images/projects/amtrak/1.png",

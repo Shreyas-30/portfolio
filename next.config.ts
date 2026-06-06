@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/work/amtrak-rebooked",
+        destination: "/work/amtrak",
+        permanent: true,
+      },
+      {
         source: "/projects/:slug",
         destination: "/work/:slug",
         permanent: true,
