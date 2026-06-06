@@ -72,7 +72,7 @@ export type Project = {
   }[];
   /** Architecture or system-design diagram shown as a full-width case-study asset. */
   systemDesign?: ImageRef;
-  /** External link or internal /projects/[slug]. */
+  /** External link or internal /work/[slug]. */
   href: string;
   /** Open in a new tab? (external links). */
   external?: boolean;

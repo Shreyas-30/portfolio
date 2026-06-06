@@ -11,6 +11,15 @@ const nextConfig: NextConfig = {
     // /public to a CDN (e.g. Cloudinary) later without touching components.
     remotePatterns: [],
   },
+  async redirects() {
+    return [
+      {
+        source: "/projects/:slug",
+        destination: "/work/:slug",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

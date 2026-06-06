@@ -32,10 +32,7 @@ export default async function ProjectPage({
 
   return (
     <main className="relative z-[2] mx-auto w-full max-w-5xl px-6 pb-32 pt-20 sm:px-10">
-      <Link
-        href="/#work"
-        className="font-mono text-[13px] text-pencil hover:text-accent"
-      >
+      <Link href="/work" className="font-mono text-[13px] text-pencil hover:text-accent">
         ← back to work
       </Link>
 

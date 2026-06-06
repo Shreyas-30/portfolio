@@ -42,7 +42,7 @@ export const projects: Project[] = [
     thumbnailFit: "contain",
     thumbnailBg: "#646448",
     previewTilt: -6,
-    href: "/projects/speakeasy",
+    href: "/work/speakeasy",
     githubUrl: "https://github.com/Shreyas-30/SpeakEasy",
     downloads: [
       {
@@ -140,7 +140,7 @@ export const projects: Project[] = [
       height: 2631,
     },
     previewTilt: -9,
-    href: "/projects/mechanical-cuckoo-clock",
+    href: "/work/mechanical-cuckoo-clock",
     images: [
       {
         src: "/images/projects/clock/0.jpg",
@@ -258,7 +258,7 @@ export const projects: Project[] = [
       height: 4672,
     },
     previewTilt: -3,
-    href: "/projects/space-chess",
+    href: "/work/space-chess",
     images: [
       {
         src: "/images/projects/spacechess/0.png",
@@ -375,7 +375,7 @@ export const projects: Project[] = [
       height: 4000,
     },
     previewTilt: 4,
-    href: "/projects/birdie",
+    href: "/work/birdie",
     images: [
       {
         src: "/images/projects/birdie/1.png",
@@ -418,7 +418,7 @@ export const projects: Project[] = [
       height: 1000,
     },
     previewTilt: 7,
-    href: "/projects/amtrak-rebooked",
+    href: "/work/amtrak-rebooked",
     images: [
       {
         src: "/images/projects/amtrak/1.png",
@@ -603,7 +603,7 @@ export const projects: Project[] = [
       height: 1078,
     },
     previewTilt: 6,
-    href: "/projects/autonomous-battlebot",
+    href: "/work/autonomous-battlebot",
     youtubeId: "WQ-gsW8HgsE",
   },
   {
@@ -648,7 +648,7 @@ export const projects: Project[] = [
       height: 4320,
     },
     previewTilt: -7,
-    href: "/projects/timewise",
+    href: "/work/timewise",
     gifs: [
       {
         src: "/images/projects/timewise/Gifs/1_details.gif",
@@ -779,7 +779,7 @@ export const projects: Project[] = [
       height: 1068,
     },
     previewTilt: -5,
-    href: "/projects/laptop-stand",
+    href: "/work/laptop-stand",
     youtubeId: "olIoftgoWJA",
     images: [
       {

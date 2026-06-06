@@ -165,9 +165,9 @@ export function ProjectIndex({ projects }: { projects: Project[] }) {
           const number = String(index + 1).padStart(2, "0");
           const isActive = activeSlug === project.slug;
           const isDimmed = Boolean(activeSlug && !isActive);
-          const rowClass = `group grid grid-cols-[3rem_1fr_2rem] items-center gap-4 border-b border-ink/15 py-8 transition-[opacity,padding] duration-[400ms] ease-[cubic-bezier(.22,1,.36,1)] sm:grid-cols-[5rem_1fr_3rem] sm:py-10 ${
+          const rowClass = `group grid grid-cols-[3rem_1fr_2rem] items-center gap-4 border-b border-ink/15 py-8 transition-[padding] duration-[400ms] ease-[cubic-bezier(.22,1,.36,1)] sm:grid-cols-[5rem_1fr_3rem] sm:py-10 ${
             isActive ? "pl-3 sm:pl-5" : "pl-0"
-          } ${isDimmed ? "opacity-35" : "opacity-100"}`;
+          }`;
           const content = (
             <>
               <span
@@ -183,8 +183,8 @@ export function ProjectIndex({ projects }: { projects: Project[] }) {
               </span>
               <span className="min-w-0">
                 <span
-                  className={`block font-display text-4xl font-semibold leading-tight transition-[color,letter-spacing] duration-[400ms] ease-[cubic-bezier(.22,1,.36,1)] sm:text-5xl lg:text-6xl ${
-                    isActive ? "tracking-[0.015em] text-ink" : isDimmed ? "text-pencil" : "text-ink"
+                  className={`block font-display text-4xl font-semibold leading-tight transition-colors duration-[400ms] ease-[cubic-bezier(.22,1,.36,1)] sm:text-5xl lg:text-6xl ${
+                    isDimmed ? "text-pencil" : "text-ink"
                   }`}
                 >
                   {project.title}
