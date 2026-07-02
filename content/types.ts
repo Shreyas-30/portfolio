@@ -63,6 +63,8 @@ export type Project = {
   youtubeId?: string;
   /** Source repository for the project. */
   githubUrl?: string;
+  /** Live product/site link shown from an internal project page. */
+  liveUrl?: string;
   /** Download/test links with store badges and QR codes. */
   downloads?: {
     label: string;

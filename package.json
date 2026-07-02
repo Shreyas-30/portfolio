@@ -11,6 +11,8 @@
   "dependencies": {
     "motion": "^11.18.0",
     "next": "^16.2.7",
+    "posthog-js": "^1.396.5",
+    "posthog-node": "^5.21.2",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },

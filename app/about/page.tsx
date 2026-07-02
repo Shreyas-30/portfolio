@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { AboutCTAs, ResumeLink } from "@/components/about/AboutCTAs";
 
 export const metadata: Metadata = {
   title: "About — Shreyas Kulkarni",
@@ -117,17 +117,7 @@ export default function AboutPage() {
       <section className="mt-14">
         <div className="mb-6 flex items-center justify-between">
           <p className="kicker">Experience &amp; Education</p>
-          <a
-            href="/Shreyas_Kulkarni_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group/link inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wide text-pencil transition-colors hover:text-accent"
-          >
-            resume
-            <span className="inline-block transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5">
-              ↗
-            </span>
-          </a>
+          <ResumeLink />
         </div>
         <ul className="divide-y divide-ink/10">
           {[...experience, ...education].map((e) => (
@@ -168,26 +158,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTAs */}
-      <section className="mt-14 flex flex-wrap gap-5">
-        <a
-          href="mailto:shreyask3004@gmail.com"
-          className="group/link inline-flex items-center gap-2 border-b-2 border-ink pb-0.5 font-mono text-[13px] tracking-wide text-ink transition-colors hover:border-accent hover:text-accent"
-        >
-          get in touch
-          <span className="inline-block transition-transform duration-200 group-hover/link:translate-x-1 group-hover/link:-translate-y-1">
-            ↗
-          </span>
-        </a>
-        <Link
-          href="/#work"
-          className="group/link inline-flex items-center gap-2 border-b-2 border-ink/40 pb-0.5 font-mono text-[13px] tracking-wide text-pencil transition-colors hover:border-accent hover:text-accent"
-        >
-          see my work
-          <span className="inline-block transition-transform duration-200 group-hover/link:translate-x-1 group-hover/link:-translate-y-1">
-            →
-          </span>
-        </Link>
-      </section>
+      <AboutCTAs />
     </main>
   );
 }

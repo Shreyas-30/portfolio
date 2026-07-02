@@ -1,3 +1,6 @@
+"use client";
+
+import posthog from "posthog-js";
 import { site } from "@/content/site";
 
 export function Footer() {
@@ -18,6 +21,12 @@ export function Footer() {
             target={s.href.startsWith("http") ? "_blank" : undefined}
             rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
             className="border-b-2 border-ink pb-0.5 font-mono text-sm text-ink transition-colors hover:border-accent hover:text-accent"
+            onClick={() =>
+              posthog.capture("social_link_clicked", {
+                label: s.label,
+                source: "footer",
+              })
+            }
           >
             {s.label} ↗
           </a>

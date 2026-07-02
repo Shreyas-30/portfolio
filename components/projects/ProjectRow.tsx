@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import posthog from "posthog-js";
 import type { Project } from "@/content/types";
 import { imageFill } from "@/lib/image";
 
@@ -22,10 +25,21 @@ export function ProjectRow({
     : { href: project.href };
   const mobileTags = project.tags.slice(0, 2);
 
+  const handleClick = () => {
+    posthog.capture("work_project_clicked", {
+      project_slug: project.slug,
+      project_title: project.title,
+      project_tags: project.tags,
+      project_index: index,
+      is_external: project.external ?? false,
+    });
+  };
+
   return (
     <Wrapper
       {...linkProps}
       className="group grid grid-cols-1 items-center gap-8 rounded-lg outline-none transition-opacity hover:opacity-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-paper md:grid-cols-[380px_1fr] md:gap-16 md:min-h-[285px]"
+      onClick={handleClick}
     >
       {/* Thumbnail — always left */}
       <div

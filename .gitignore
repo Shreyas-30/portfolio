@@ -26,3 +26,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.env.local
+
+# local agent / generated setup artifacts
+.claude/
+posthog-setup-report.md

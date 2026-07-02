@@ -1,11 +1,14 @@
+"use client";
+
 import Link from "next/link";
+import posthog from "posthog-js";
 import { projects } from "@/content/projects";
 import { ProjectIndex } from "./ProjectIndex";
 
 const FEATURED_PROJECT_SLUGS = [
   "speakeasy",
   "kiro",
-  "mechanical-cuckoo-clock",
+  "smriti",
   "space-chess",
   "autonomous-battlebot",
 ];
@@ -37,6 +40,7 @@ export function ProjectList() {
         <Link
           href="/work"
           className="group/link inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.14em] text-ink transition-colors hover:text-accent"
+          onClick={() => posthog.capture("view_all_work_clicked", { total_projects: projects.length })}
         >
           View all work
           <span className="inline-block transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5">

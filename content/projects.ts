@@ -125,6 +125,78 @@ export const projects: Project[] = [
     external: true,
   },
   {
+    slug: "smriti",
+    title: "Smriti",
+    subtitle: "Voice-first family storytelling platform",
+    tags: ["PRODUCT", "AI", "STARTUP", "WEB"],
+    year: "2026",
+    description:
+      "A multilingual storytelling platform that helps families capture oral histories across generations, languages, and distance.",
+    body: "Smriti is a guided, voice-first storytelling platform for families whose histories live mostly in conversations, voice notes, and half-remembered anecdotes. It helps adult children, parents, and grandparents collect memories through culturally grounded prompts, native-language voice recordings, AI-assisted transcription and translation, and digital or physical keepsakes that make those stories easier to revisit and share.",
+    details: [
+      { label: "Role", value: "Co-founder, product strategy, UX, build" },
+      {
+        label: "Focus",
+        value: "Voice-first story capture for Indian and diaspora families",
+      },
+      {
+        label: "Research",
+        value: "60+ survey respondents and user interviews",
+      },
+      {
+        label: "Output",
+        value: "Live web platform, digital archive, physical memory book concept",
+      },
+    ],
+    sections: [
+      {
+        title: "Problem",
+        body: "In many Indian and diaspora families, history is oral, scattered, and rarely documented beyond one generation. Families want to preserve those memories, but the work is hard to start and even harder to keep up with. Traditional memoir and ghostwriting models are too expensive, too manual, and often not designed for Hindi, Marathi, Tamil, or other regional-language storytelling.",
+      },
+      {
+        title: "Product Idea",
+        body: "Smriti turns memory preservation into a guided flow instead of a blank-page writing project. Families choose prompts, share them through familiar channels, capture responses in the storyteller's own voice and language, then use AI-assisted transcription, translation, and narrative editing to shape those recordings into a digital archive or printed keepsake.",
+      },
+      {
+        title: "Audience",
+        body: "The buyer is often an adult child living away from home, looking for a meaningful gift or a way to preserve family history before it disappears. The storyteller is usually a parent or grandparent who may be more comfortable speaking than writing, and who needs the process to feel natural, low-friction, and emotionally respectful.",
+      },
+      {
+        title: "System Direction",
+        body: "The product is built around a voice-to-publishing workflow: multilingual voice ingestion, preprocessing, AI orchestration, human review where needed, and publishable artifacts such as shareable stories, family archives, and physical books. The goal is not just to record audio, but to turn lived memory into something families can keep, revisit, and pass on.",
+      },
+    ],
+    thumbnail: {
+      src: "/images/projects/smriti/thumbnail-smriti.png",
+      alt: "Smriti pitch deck cover and product screen",
+      width: 7680,
+      height: 4320,
+    },
+    previewTilt: -4,
+    href: "/work/smriti",
+    liveUrl: "https://smritistories.com",
+    images: [
+      {
+        src: "/images/projects/smriti/product.jpg",
+        alt: "Smriti product overview slide",
+        width: 3200,
+        height: 1800,
+      },
+      {
+        src: "/images/projects/smriti/process-1.jpg",
+        alt: "Smriti six-step story collection process",
+        width: 3200,
+        height: 1800,
+      },
+      {
+        src: "/images/projects/smriti/architecture.jpg",
+        alt: "Smriti voice-to-publishing workflow",
+        width: 3200,
+        height: 1800,
+      },
+    ],
+  },
+  {
     slug: "mechanical-cuckoo-clock",
     title: "Mechanical Cuckoo Clock",
     subtitle: "All-mechanical timepiece",

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
+import posthog from "posthog-js";
 import type { Project } from "@/content/types";
 import { imageFill } from "@/lib/image";
 
@@ -206,6 +207,15 @@ export function ProjectIndex({ projects }: { projects: Project[] }) {
             </>
           );
 
+          const handleProjectClick = () => {
+            posthog.capture("project_clicked", {
+              project_slug: project.slug,
+              project_title: project.title,
+              project_tags: project.tags,
+              is_external: project.external ?? false,
+            });
+          };
+
           return project.external ? (
             <a
               key={project.slug}
@@ -214,6 +224,7 @@ export function ProjectIndex({ projects }: { projects: Project[] }) {
               onMouseEnter={(event) => showPreview(project, event)}
               onFocus={() => setActiveSlug(project.slug)}
               onBlur={() => setActiveSlug(null)}
+              onClick={handleProjectClick}
             >
               {content}
             </a>
@@ -225,6 +236,7 @@ export function ProjectIndex({ projects }: { projects: Project[] }) {
               onMouseEnter={(event) => showPreview(project, event)}
               onFocus={() => setActiveSlug(project.slug)}
               onBlur={() => setActiveSlug(null)}
+              onClick={handleProjectClick}
             >
               {content}
             </Link>
