@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { fraunces, interTight, splineMono } from "./fonts";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { FloatingNav } from "@/components/nav/FloatingNav";
 import { GrainOverlay } from "@/components/GrainOverlay";
 import { site } from "@/content/site";
@@ -51,6 +52,7 @@ export default function RootLayout({
       className={`${fraunces.variable} ${interTight.variable} ${splineMono.variable}`}
     >
       <body>
+        <GoogleAnalytics />
         <GrainOverlay />
         {children}
         <FloatingNav />
