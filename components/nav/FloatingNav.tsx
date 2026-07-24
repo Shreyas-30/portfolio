@@ -91,7 +91,7 @@ export function FloatingNav() {
   return (
     <motion.nav
       aria-label="Primary"
-      className="fixed inset-x-3 bottom-4 z-50 sm:inset-x-auto sm:left-1/2 sm:bottom-5 sm:-translate-x-1/2"
+      className="fixed inset-x-3 top-4 z-50 sm:inset-x-auto sm:left-1/2 sm:top-5 sm:-translate-x-1/2"
       initial={false}
       animate={reduce ? {} : { y: [0, -5, 0] }}
       transition={
@@ -104,7 +104,7 @@ export function FloatingNav() {
         ref={containerRef}
         onMouseMove={followPointer}
         onMouseLeave={hideCursor}
-        className="relative mx-auto w-[min(22rem,100%)] overflow-hidden rounded-[1.75rem] border border-ink/15 bg-paper/92 shadow-[0_10px_30px_rgba(0,0,0,0.16)] backdrop-blur-sm sm:mx-0 sm:w-auto sm:flex sm:items-center sm:gap-1 sm:rounded-full sm:bg-paper/90 sm:px-2 sm:py-2"
+        className="relative mx-auto w-[min(22rem,100%)] overflow-hidden rounded-[1.75rem] border border-ink/20 bg-paper/95 shadow-[0_14px_36px_rgba(26,26,23,0.18)] backdrop-blur-md sm:mx-0 sm:w-auto sm:flex sm:items-center sm:gap-1 sm:rounded-full sm:bg-paper/94 sm:px-2 sm:py-2"
       >
         <button
           type="button"
@@ -165,7 +165,9 @@ export function FloatingNav() {
                 onClick={() => setMobileOpen(false)}
                 tabIndex={mobileOpen ? 0 : -1}
                 className={`relative z-10 inline-flex min-h-11 items-center justify-center rounded-full px-3 py-2 text-center font-mono text-[12px] tracking-wide transition-colors duration-150 ${
-                  active ? "bg-ink/[0.06] text-ink" : "text-pencil"
+                  active
+                    ? "bg-ink/[0.075] text-ink backdrop-blur-[1.5px]"
+                    : "text-pencil"
                 }`}
               >
                 {item.label}
@@ -203,6 +205,8 @@ export function FloatingNav() {
                 onBlur={hideCursor}
                 className={`relative z-10 inline-flex min-h-11 items-center rounded-full px-3.5 py-2 font-mono text-[13px] tracking-wide transition-colors duration-150 ${
                   active || isHovered ? "text-ink" : "text-pencil"
+                } ${
+                  active ? "bg-ink/[0.075] backdrop-blur-[1.5px]" : ""
                 }`}
               >
                 {item.label}
