@@ -23,19 +23,19 @@ export const speakeasyContent = {
   quotes: [
     "I can read the words, but when it's time to talk, my head goes blank.",
     "I forget everything as soon as I learn it.",
-    "Duolingo taught me to say 'I'm a tired doctor.' When would I ever say that?",
+    "Duolingo taught me to say - I'm a tired doctor. When would I ever say that?",
   ],
   insights: [
     {
-      t: "Meaningful beats structured",
-      b: "People learn best when the content is personally meaningful, not when the curriculum says it's time.",
+      t: "Context beats structure",
+      b: "People learn best when language shows up in a context they understand, not when the curriculum says it's time.",
     },
     {
-      t: "Comfort grows fluency",
+      t: "Safety builds fluency",
       b: "Fluency grows from comfort, not perfection. Fear of embarrassment was the single most repeated blocker.",
     },
     {
-      t: "Culture is the bridge",
+      t: "Meaning travels through culture",
       b: "Culture is inseparable from language. Apps teach correctness; people crave meaning.",
     },
   ],
@@ -49,32 +49,32 @@ export const speakeasyContent = {
   hmws: [
     {
       n: "HMW 1",
-      t: "Personalize the level of immersion by environment and emotional connection?",
-      why: "Lived experience beats memorization. Babies learn from tone, gesture and context, not grammar drills.",
+      t: "How might we make practice come from a learner's real world?",
+      why: "The strongest learning moments came from context learners already understood: the places they moved through, the media they consumed, and the routines they repeated.",
       ideas: [
-        { n: "“Parent-mode” agent", d: "repetitive, emotional feedback and tremendous encouragement" },
-        { n: "Environment immersion", d: "café chatter, subway signs & YouTube become interactive language moments" },
-        { n: "Scenario mode", d: "role-play ordering food or meeting a friend, powered by your real routines" },
+        { n: "Browser-to-lesson companion", d: "turn everyday browsing into short lessons, which became the LangLearn prototype" },
+        { n: "Environment immersion", d: "make café chatter, signs, and videos feel like practice material, later explored through Verba" },
+        { n: "Scenario rehearsal", d: "let learners practice real situations like ordering food or making calls before they happen" },
       ],
     },
     {
       n: "HMW 2",
-      t: "Embed cultural storytelling and local customs into learning?",
-      why: "Users kept naming culture as the bridge between memorization and fluency.",
+      t: "How might we teach through content people already care about?",
+      why: "Learners did not want more abstract drills. They wanted language attached to culture, interests, and stories that made the words worth remembering.",
       ideas: [
-        { n: "Story capsules", d: "mini-lessons on idioms, gestures & humor drawn from media you already watch" },
-        { n: "Word lens", d: "how the same word shows up across different real contexts" },
-        { n: "Community threads", d: "learners connect around cultural moments in shared media" },
+        { n: "Story capsules", d: "small lessons around idioms, humor, and customs from media learners already watch" },
+        { n: "Word lens", d: "show how one word changes meaning across articles, videos, and everyday contexts" },
+        { n: "Interest-based feed", d: "let learners choose topics first, which became the backbone of SpeakEasy's article feed" },
       ],
     },
     {
       n: "HMW 3",
-      t: "Simulate authentic social scenarios without fear of embarrassment?",
-      why: "Almost every learner named fear of embarrassment and a lack of realistic practice.",
+      t: "How might we make speaking practice feel low-stakes but real?",
+      why: "Almost every learner described the same gap: they could recognize words, but froze when they had to speak. The product needed rehearsal without embarrassment.",
       ideas: [
-        { n: "Wearable companion", d: "subtle prompts to practice during real-world moments" },
-        { n: "Voice AI buddy", d: "natural conversation, gentle feedback, real-world speech rhythms" },
-        { n: "Real-time assistant", d: "listens to conversation around you and surfaces natural expressions" },
+        { n: "Wearable companion", d: "surface small prompts during real-world moments, an early path we chose not to pursue" },
+        { n: "Voice AI buddy", d: "natural conversation with gentle feedback, first tested in Verba and later carried into SpeakEasy" },
+        { n: "Article discussion", d: "turn something the learner just read into a focused spoken conversation" },
       ],
     },
   ],
@@ -113,7 +113,27 @@ export const speakeasyContent = {
   ],
 
   pivotIntro:
-    "June, 53, enrolled in ESL at a community college and quit after three months. She is who the system misses:",
+    "After testing LangLearn and Verba, the direction got clearer. People liked practice that came from things they already consumed, but the product had to live somewhere familiar, private, and easy to return to.",
+  prototypeLearnings: [
+    {
+      t: "Real content worked",
+      b: "Users responded to practice built around articles, videos, and daily browsing because it already had context.",
+    },
+    {
+      t: "Mobile felt more reachable",
+      b: "The browser extension felt useful but too heavy. People expected learning to fit into phone-sized moments.",
+    },
+    {
+      t: "AR was too early",
+      b: "Verba made the interaction feel alive, but smart glasses were not something most people owned or trusted yet.",
+    },
+    {
+      t: "Voice practice mattered",
+      b: "The buddy-style conversation was the part users kept coming back to: low-stakes, personal, and close to real speaking.",
+    },
+  ],
+  pivotAudience:
+    "That pushed us toward adults outside formal classrooms, especially learners who wanted to improve English but could not reliably make time for ESL classes.",
   pivotStats: [
     { b: "18–20M", s: "LEP adults age 30+ in the U.S., most outside any school system" },
     { b: "4%", s: "of adults actually participate in ESL classes" },
@@ -121,7 +141,7 @@ export const speakeasyContent = {
     { b: "59%", s: "didn't know where classes even were" },
   ],
   tiktok:
-    "44% of U.S. adults 30–49 use TikTok; 30% of 50–64. This audience already scrolls daily. The opportunity is to make that content teach.",
+    "Content first, practice second, no new hardware or classroom schedule required.",
   audienceWorks: [
     "Task-based, not abstract lessons",
     "Real-life, high-stakes scenarios (calls, forms, doctor visits)",
@@ -130,7 +150,7 @@ export const speakeasyContent = {
   ],
 
   productIntro:
-    "A personalized single-column feed where every article is a learning unit: read-aloud, tap-to-define, a word bank, and a voice-first AI conversation about what you just read.",
+    "The final app became a simple learning loop: choose something worth reading, get help when stuck, then practice speaking about it.",
   decisions: [
     {
       q: "Feed or curriculum?",
@@ -216,15 +236,13 @@ export const speakeasyContent = {
     { k: "03", label: "Two prototypes", head: "LangLearn and Verba, built and tested" },
     { k: "04", label: "The pivot", head: "Meet the 4%" },
     { k: "05", label: "The product", head: "A feed you learn inside" },
-    { k: "06", label: "Proof", head: "Sixteen learners, one expert, one beta" },
   ],
   markers: [
     "interviews distilled into 3 how-might-we questions and 9 ideas",
     "two concepts prototyped, storyboarded and user-tested",
     "the audience got a face",
     "one product, four hard design calls",
-    "validated and shipped",
   ],
 
-  bandWidths: ["100%", "940px", "880px", "740px", "660px", "560px"],
+  bandWidths: ["100%", "940px", "880px", "740px", "660px"],
 };

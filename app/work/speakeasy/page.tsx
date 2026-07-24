@@ -4,10 +4,7 @@ import Link from "next/link";
 import { projects } from "@/content/projects";
 import { speakeasyContent as C } from "@/content/speakeasy";
 import { ProjectPageTracker } from "@/components/projects/ProjectPageTracker";
-import {
-  ProjectExternalLinks,
-  ProjectDownloads,
-} from "@/components/projects/ProjectLinks";
+import { SpeakEasyActionLinks } from "./ActionLinks";
 import { SECTION_BODIES } from "./sections";
 import styles from "./speakeasy.module.css";
 
@@ -26,7 +23,7 @@ export default function SpeakEasyPage() {
         tags={project.tags}
       />
 
-      <div className="mx-auto w-full max-w-5xl px-6 sm:px-10">
+      <div className="mx-auto w-full max-w-6xl px-6 sm:px-10">
         <Link
           href="/work"
           className="font-mono text-[13px] text-pencil hover:text-accent"
@@ -34,47 +31,39 @@ export default function SpeakEasyPage() {
           ← back to work
         </Link>
 
-        {/* Hero */}
         <header className="mt-8 max-w-3xl">
-          <p className="font-mono text-[11.5px] uppercase tracking-[0.15em] text-pencil">
-            {C.tagline.map((t, i) => (
-              <span key={t}>
-                {i > 0 && <span className="text-accent"> · </span>}
-                {t}
-              </span>
-            ))}
-          </p>
-          <h1 className="mt-4 font-display text-[clamp(52px,8vw,92px)] font-semibold leading-[0.98] tracking-tight">
-            SpeakEasy
+          <p className="kicker">{project.tags.join(" · ")}</p>
+          <h1 className="mt-2 font-display text-5xl font-semibold sm:text-6xl">
+            {project.title}
           </h1>
-          <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-ink/80">
-            {C.lede}
-          </p>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {C.chips.map((chip) => (
-              <span
-                key={chip}
-                className="rounded-full border border-ink/15 px-3 py-1.5 font-mono text-[10.5px] text-pencil"
-              >
-                {chip}
-              </span>
-            ))}
-          </div>
+          <p className="mt-3 text-lg text-ink/80">{project.subtitle}</p>
         </header>
-      </div>
 
-      {/* Hero image */}
-      <div className="mx-auto mt-10 w-full max-w-5xl px-6 sm:px-10">
-        <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-paper-2">
-          <Image
-            src={project.thumbnail.src}
-            alt={project.thumbnail.alt}
-            fill
-            sizes="(max-width: 1024px) 100vw, 960px"
-            className="object-cover"
-            priority
-          />
-        </div>
+        <section className={`${styles.hero} mt-8`} aria-label="SpeakEasy app preview">
+          <div className={styles.heroCopy}>
+            <Image
+              src="/images/projects/speakeasy/header-logo.png"
+              alt="SpeakEasy"
+              width={1290}
+              height={375}
+              className={styles.heroLogo}
+              priority
+            />
+          </div>
+
+          <div className={styles.heroVisual}>
+            <div className={styles.heroArc} aria-hidden="true" />
+            <Image
+              src="/images/projects/speakeasy/header-image-phones.png"
+              alt="Three SpeakEasy app screens showing interest selection, AI discussion, and article learning"
+              width={1730}
+              height={1550}
+              sizes="(max-width: 860px) 92vw, 650px"
+              className={styles.heroPhones}
+              priority
+            />
+          </div>
+        </section>
       </div>
 
       <div className="mx-auto w-full max-w-5xl px-6 sm:px-10">
@@ -94,7 +83,7 @@ export default function SpeakEasyPage() {
           </section>
         )}
 
-        <ProjectExternalLinks project={project} />
+        <SpeakEasyActionLinks project={project} />
       </div>
 
       {/* The funnel */}
@@ -117,22 +106,11 @@ export default function SpeakEasyPage() {
                 </div>
                 <Body />
               </div>
-              {i < C.markers.length && (
-                <div className={styles.marker}>
-                  <span className="text-center font-mono text-[11px] tracking-wide text-pencil">
-                    ▽ {C.markers[i]}
-                  </span>
-                </div>
-              )}
             </div>
           );
         })}
       </div>
 
-      {/* Download CTA */}
-      <div className="mx-auto mt-4 w-full max-w-5xl px-6 sm:px-10">
-        <ProjectDownloads project={project} />
-      </div>
     </main>
   );
 }

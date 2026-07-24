@@ -6,14 +6,12 @@ import styles from "./proof-phone.module.css";
 
 const project = projects.find((p) => p.slug === "speakeasy")!;
 
-// Short, one-to-two-line summaries for the compact step list — the full
-// captions in content/projects.ts are written for the generic project
-// template's larger layout and read as too wordy here.
-const STEP_SUMMARIES: Record<number, string> = {
-  0: "Pick your interests once, and get a personalized article feed from day one.",
-  1: "Tap any word to define it, listen along, and save new vocabulary as you read.",
-  2: "Talk it through with an AI tutor, phone-call style, one gentle question at a time.",
-};
+const FLOW_STEPS = [
+  { label: "Choose", videoIndex: 0 },
+  { label: "Read + listen", videoIndex: 1 },
+  { label: "Save words", videoIndex: 1 },
+  { label: "Discuss", videoIndex: 2 },
+];
 
 function prefersReducedMotion() {
   return (
@@ -83,70 +81,61 @@ export function ProofPhoneShowcase() {
 
   const activeVideo = videos[active];
   const fallbackFilename = activeVideo.src.split("/").pop() ?? activeVideo.src;
+  const overallProgress =
+    videos.length > 0 ? (active + progress / 100) / videos.length : 0;
 
   return (
     <div
       ref={containerRef}
       tabIndex={0}
-      aria-label="Product flow videos — use left and right arrow keys to navigate"
-      className="mx-auto grid max-w-[760px] grid-cols-1 items-center gap-8 text-left outline-none min-[560px]:grid-cols-[1fr_220px] min-[560px]:gap-10"
+      aria-label="Product flow video — use left and right arrow keys to navigate"
+      className="mx-auto w-full text-center outline-none"
     >
-      <div className="flex flex-col gap-1.5">
-        {videos.map((video, i) => {
-          const isActive = i === active;
+      <div className="grid gap-3 min-[760px]:grid-cols-4">
+        {FLOW_STEPS.map((step, i) => {
+          const stepStart = i / FLOW_STEPS.length;
+          const stepEnd = (i + 1) / FLOW_STEPS.length;
+          const fill = Math.max(
+            0,
+            Math.min(
+              100,
+              ((overallProgress - stepStart) / (stepEnd - stepStart)) * 100,
+            ),
+          );
+          const isActive = fill > 0 && fill < 100;
+          const isComplete = fill >= 100;
+
           return (
             <button
-              key={video.src}
+              key={step.label}
               type="button"
-              onClick={() => goTo(i)}
-              className={`text-left transition-[background-color,border-color,box-shadow,opacity] duration-300 ${
-                isActive
-                  ? "rounded-xl border border-ink/15 bg-white/40 px-5 py-4 shadow-[0_6px_20px_rgba(40,36,28,0.06)]"
-                  : "rounded-xl border border-transparent px-5 py-2.5 opacity-60 hover:opacity-100"
+              onClick={() => goTo(Math.min(step.videoIndex, videos.length - 1))}
+              className={`group relative overflow-hidden rounded-lg bg-white/25 px-4 py-3 text-left font-mono text-[10px] uppercase tracking-[0.14em] transition-colors duration-300 hover:bg-white/40 ${
+                isActive || isComplete ? "text-ink" : "text-pencil"
               }`}
             >
-              <div className="flex items-baseline gap-3">
+              <span className="mr-2 text-accent">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              {step.label}
+              <span className="absolute bottom-0 left-0 h-0.5 w-full bg-ink/8">
                 <span
-                  className={`font-mono text-[11px] font-semibold transition-colors duration-300 ${
-                    isActive ? "text-accent" : "text-pencil"
-                  }`}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h4 className="font-display text-xl font-semibold leading-snug">
-                  {video.title}
-                </h4>
-              </div>
-              <div
-                className="grid transition-[grid-template-rows] duration-300 ease-out"
-                style={{ gridTemplateRows: isActive ? "1fr" : "0fr" }}
-              >
-                <div className="overflow-hidden">
-                  {STEP_SUMMARIES[i] && (
-                    <p className="mt-1.5 max-w-[46ch] text-[12px] leading-relaxed text-ink/70">
-                      {STEP_SUMMARIES[i]}
-                    </p>
-                  )}
-                  <div className="mt-2.5 h-0.5 w-full max-w-[46ch] overflow-hidden rounded-full bg-ink/10">
-                    <div
-                      className="h-full rounded-full bg-accent"
-                      style={{
-                        width: `${progress}%`,
-                        transition: prefersReducedMotion()
-                          ? "none"
-                          : "width 200ms linear",
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
+                  className="block h-full bg-accent"
+                  style={{
+                    width: `${fill}%`,
+                    transition: prefersReducedMotion()
+                      ? "none"
+                      : "width 200ms linear",
+                  }}
+                />
+              </span>
             </button>
           );
         })}
       </div>
 
-      <div className="mx-auto w-full max-w-[220px]">
-        <div className="relative aspect-[9/19] w-full overflow-hidden rounded-[2rem] bg-paper-2 shadow-[0_20px_60px_rgba(40,36,28,0.15)]">
+      <div className="mx-auto w-full max-w-[230px]">
+        <div className="relative mt-9 aspect-[9/19.5] w-full overflow-hidden rounded-[2.45rem] bg-transparent shadow-[0_20px_60px_rgba(40,36,28,0.15)]">
           {videoFailed ? (
             <div className="media-slot-placeholder relative h-full w-full overflow-hidden border border-ink/15">
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 p-3 text-center">
@@ -162,7 +151,7 @@ export function ProofPhoneShowcase() {
             <video
               key={activeVideo.src}
               ref={videoRef}
-              className={`h-full w-full object-contain ${styles.videoFadeIn}`}
+              className={`absolute inset-0 h-full w-full object-contain ${styles.videoFadeIn}`}
               src={activeVideo.src}
               muted
               playsInline

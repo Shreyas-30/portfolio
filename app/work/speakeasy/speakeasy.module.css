@@ -1,3 +1,102 @@
+/* SpeakEasy page hero */
+.hero {
+  position: relative;
+  min-height: clamp(500px, 45.5vw, 540px);
+  overflow: hidden;
+  background: var(--color-paper);
+}
+
+.heroCopy {
+  position: absolute;
+  z-index: 3;
+  left: clamp(54px, 7vw, 84px);
+  top: 48%;
+  width: min(27vw, 320px);
+  transform: translateY(-50%);
+}
+
+.heroLogo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.heroVisual {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+}
+
+.heroArc {
+  position: absolute;
+  z-index: 0;
+  right: clamp(18px, 4vw, 54px);
+  bottom: 42px;
+  width: clamp(570px, 52vw, 640px);
+  height: clamp(210px, 20vw, 250px);
+  border-radius: 999px 999px 0 0;
+  background: #4d5e3d;
+}
+
+.heroPhones {
+  position: absolute;
+  z-index: 2;
+  right: clamp(44px, 6.8vw, 82px);
+  top: clamp(18px, 3vw, 34px);
+  width: min(48vw, 565px);
+  height: auto;
+  filter: drop-shadow(0 24px 24px rgba(26, 26, 23, 0.16));
+}
+
+@media (max-width: 980px) {
+  .hero {
+    min-height: clamp(560px, 88vw, 700px);
+  }
+
+  .heroCopy {
+    left: clamp(28px, 8vw, 64px);
+    top: 76px;
+    width: min(58vw, 320px);
+    transform: none;
+  }
+
+  .heroArc {
+    right: 50%;
+    bottom: 38px;
+    width: min(760px, 106vw);
+    height: clamp(240px, 40vw, 310px);
+    transform: translateX(50%);
+  }
+
+  .heroPhones {
+    right: 50%;
+    top: clamp(180px, 28vw, 220px);
+    width: min(78vw, 545px);
+    transform: translateX(50%);
+  }
+}
+
+@media (max-width: 620px) {
+  .hero {
+    min-height: 530px;
+  }
+
+  .heroLogo {
+    width: min(100%, 260px);
+  }
+
+  .heroArc {
+    bottom: 32px;
+    width: 540px;
+    height: 220px;
+  }
+
+  .heroPhones {
+    top: 188px;
+    width: min(90vw, 450px);
+  }
+}
+
 /* The funnel: each section band gets its own max-width (set inline via
    --band-width) so the page physically narrows as the project converges.
    Collapses to full width under the mock's ~860px breakpoint. */
@@ -17,21 +116,4 @@
   .band {
     max-width: 100% !important;
   }
-}
-
-/* "▽ ..." transition marker between bands */
-.marker {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 4px 0 12px;
-}
-
-.marker::before,
-.marker::after {
-  content: "";
-  height: 22px;
-  width: 1px;
-  background: color-mix(in srgb, var(--color-ink) 15%, transparent);
 }

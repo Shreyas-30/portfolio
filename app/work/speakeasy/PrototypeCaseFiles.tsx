@@ -9,7 +9,6 @@ import {
 } from "react";
 import { speakeasyContent as C } from "@/content/speakeasy";
 import { MediaSlot } from "./MediaSlot";
-import { PrototypeMedia } from "./PrototypeMedia";
 import styles from "./case-file.module.css";
 
 const SLUGS = ["langlearn", "verba"];
@@ -40,7 +39,6 @@ const FOCUSABLE_SELECTOR =
 export function PrototypeCaseFiles() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [mountedIndex, setMountedIndex] = useState<number | null>(null);
-  const [revealed, setRevealed] = useState(false);
   const [tip, setTip] = useState({ x: 0, y: 0, text: "", on: false });
 
   const cardRefs = useRef<Array<HTMLDivElement | null>>([null, null]);
@@ -78,7 +76,6 @@ export function PrototypeCaseFiles() {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
     }
-    setRevealed(false);
     setMountedIndex(ci);
     setOpenIndex(ci);
     setTip((t) => ({ ...t, on: false }));
@@ -86,7 +83,6 @@ export function PrototypeCaseFiles() {
 
   const closeOverlay = useCallback(() => {
     setOpenIndex(null);
-    setRevealed(false);
     const reduced = prefersReducedMotion();
     const restoreFocus = () => {
       const idx = lastOpenedIndex.current;
@@ -111,7 +107,6 @@ export function PrototypeCaseFiles() {
     if (!panel || !card) return;
 
     if (prefersReducedMotion()) {
-      setRevealed(true);
       return;
     }
 
@@ -131,7 +126,6 @@ export function PrototypeCaseFiles() {
         panel.style.transition = "";
         panel.style.transform = "none";
         panel.style.opacity = "1";
-        setRevealed(true);
       });
     });
     return () => {
@@ -198,7 +192,7 @@ export function PrototypeCaseFiles() {
             }}
             role="button"
             tabIndex={0}
-            data-tip="click to expand"
+            data-tip="preview coming soon"
             onClick={() => openCard(ci)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
@@ -232,7 +226,7 @@ export function PrototypeCaseFiles() {
               </p>
               <div className="mt-3.5 border-t border-dashed border-ink/15 pt-3 font-mono text-[10.5px] tracking-wide">
                 <span className="font-semibold text-accent">
-                  explore the prototype →
+                  explore prototype →
                 </span>
               </div>
             </div>
@@ -277,7 +271,7 @@ export function PrototypeCaseFiles() {
             }`}
           >
             <span className="absolute -top-px left-[34px] -translate-y-full rounded-t-lg bg-ink px-4 py-1.5 font-mono text-[10px] uppercase tracking-wide text-paper">
-              case file · {activeConcept.k}
+              prototype notes · {activeConcept.k}
             </span>
             <div className="overflow-auto rounded-2xl px-[clamp(22px,3.5vw,44px)] pb-10 pt-[34px]">
               <div className="flex items-start justify-between gap-4">
@@ -305,52 +299,36 @@ export function PrototypeCaseFiles() {
                 </button>
               </div>
 
-              <p className="mt-4 text-[13.5px] leading-relaxed text-ink/70">
-                {activeConcept.what}
-              </p>
+              <div className="mt-8 rounded-xl border border-ink/12 bg-white/35 px-5 py-6">
+                <p className="font-mono text-[10.5px] uppercase tracking-[0.15em] text-accent">
+                  Coming soon
+                </p>
+                <h5 className="mt-3 font-display text-[clamp(26px,3vw,34px)] font-semibold leading-tight">
+                  A deeper look at how this prototype shaped SpeakEasy.
+                </h5>
+                <p className="mt-4 max-w-[58ch] text-[15px] leading-relaxed text-ink/72">
+                  I am turning this into a focused mini case study with the
+                  storyboard, test feedback, key iterations, and the specific
+                  decisions that carried forward into the final product.
+                </p>
+              </div>
 
-              <div className={revealed ? styles.revealed : ""}>
-                <div className={`${styles.reveal} mt-4`}>
-                  <PrototypeMedia
-                    slug={SLUGS[mountedIndex]}
-                    name={activeConcept.name}
-                    active={isOpen}
-                  />
+              <div className="mt-6 grid gap-4 min-[700px]:grid-cols-[1fr_1fr]">
+                <div>
+                  <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                    Prototype idea
+                  </p>
+                  <p className="mt-2 text-[14px] leading-relaxed text-ink/75">
+                    {activeConcept.what}
+                  </p>
                 </div>
-                <div
-                  className={`${styles.reveal} mt-4 grid grid-cols-2 gap-3 min-[640px]:grid-cols-4`}
-                >
-                  {activeConcept.story.map((line, i) => (
-                    <div key={line}>
-                      <MediaSlot
-                        filename={`storyboard-${SLUGS[mountedIndex]}-0${i + 1}.png`}
-                        alt={`${activeConcept.name} storyboard frame ${i + 1}`}
-                        caption={`${activeConcept.name} storyboard frame ${i + 1}`}
-                        aspect="aspect-square"
-                      />
-                      <p className="mt-1.5 font-mono text-[9.5px] leading-relaxed text-pencil">
-                        {String(i + 1).padStart(2, "0")} · {line}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-                <div
-                  className={`${styles.reveal} mt-3 border-t border-dashed border-ink/15 pt-2.5 font-mono text-[11px] leading-relaxed text-pencil`}
-                >
-                  <b className="font-semibold text-[#a4432e]">round 1:</b>{" "}
-                  {activeConcept.fb1}
-                </div>
-                <div
-                  className={`${styles.reveal} mt-2 font-mono text-[11px] leading-relaxed text-pencil`}
-                >
-                  <b className="font-semibold text-accent">iteration:</b>{" "}
-                  {activeConcept.iter}
-                </div>
-                <div
-                  className={`${styles.reveal} mt-2 font-mono text-[11px] leading-relaxed text-pencil`}
-                >
-                  <b className="font-semibold text-[#3c6e4f]">verdict:</b>{" "}
-                  {activeConcept.verdict}
+                <div>
+                  <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                    What carried forward
+                  </p>
+                  <p className="mt-2 text-[14px] leading-relaxed text-ink/75">
+                    {activeConcept.verdict}
+                  </p>
                 </div>
               </div>
             </div>
