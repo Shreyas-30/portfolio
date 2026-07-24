@@ -8,7 +8,10 @@ import { ProjectPageTracker } from "@/components/projects/ProjectPageTracker";
 import { ProjectExternalLinks, ProjectDownloads } from "@/components/projects/ProjectLinks";
 
 export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  // "speakeasy" has its own dedicated route at app/work/speakeasy/page.tsx.
+  return projects
+    .filter((p) => p.slug !== "speakeasy")
+    .map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({

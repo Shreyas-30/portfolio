@@ -125,6 +125,20 @@ body {
   }
 }
 
+/* Lo-fi placeholder for a case-study image that hasn't been dropped
+   into /public yet — subtle diagonal stripe, thin border, mono caption
+   naming the exact filename to add. */
+.media-slot-placeholder {
+  background-color: var(--color-paper);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-paper-2),
+    var(--color-paper-2) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
 /* Utility: mono label / kicker treatment used across sections. */
 .kicker {
   font-family: var(--font-mono);

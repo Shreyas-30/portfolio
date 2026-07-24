@@ -1,0 +1,21 @@
+/* Section 06 guided-walkthrough phone — cross-fade on step change.
+   Ported from se-v4/proof.css (.gw-vid.on / @keyframes gwswap). */
+
+@keyframes videoFadeIn {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.videoFadeIn {
+  animation: videoFadeIn 0.45s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .videoFadeIn {
+    animation: none;
+  }
+}

@@ -1,0 +1,37 @@
+/* The funnel: each section band gets its own max-width (set inline via
+   --band-width) so the page physically narrows as the project converges.
+   Collapses to full width under the mock's ~860px breakpoint. */
+.band {
+  width: 100%;
+  max-width: var(--band-width, 100%);
+  margin: 0 auto;
+  padding: 44px 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent);
+}
+
+.band:first-child {
+  border-top: none;
+}
+
+@media (max-width: 860px) {
+  .band {
+    max-width: 100% !important;
+  }
+}
+
+/* "▽ ..." transition marker between bands */
+.marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 4px 0 12px;
+}
+
+.marker::before,
+.marker::after {
+  content: "";
+  height: 22px;
+  width: 1px;
+  background: color-mix(in srgb, var(--color-ink) 15%, transparent);
+}
