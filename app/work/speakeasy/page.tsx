@@ -111,6 +111,62 @@ export default function SpeakEasyPage() {
         })}
       </div>
 
+      {project.downloads && project.downloads.length > 0 && (
+        <section className="mx-auto mt-8 w-full max-w-5xl px-6 sm:px-10">
+          <div className="rounded-lg bg-[#4d5e3d] p-5 text-paper sm:p-6">
+            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-paper/65">
+              Download now
+            </p>
+            <h2 className="mt-2 font-display text-[clamp(28px,3vw,40px)] font-semibold leading-[1.02]">
+              Try SpeakEasy on your phone.
+            </h2>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {project.downloads.map((download) => (
+                <article
+                  key={download.label}
+                  className="flex flex-col gap-4 rounded-md border border-paper/14 bg-paper/8 p-4 min-[520px]:flex-row min-[520px]:items-center min-[520px]:justify-between"
+                >
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-paper/62">
+                      {download.label}
+                    </p>
+                    <a
+                      href={download.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 block w-fit transition-opacity hover:opacity-80"
+                    >
+                      <Image
+                        src={download.badge.src}
+                        alt={download.badge.alt}
+                        width={download.badge.width}
+                        height={download.badge.height}
+                        className="h-auto w-[148px]"
+                      />
+                    </a>
+                  </div>
+                  <a
+                    href={download.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${download.label} QR code`}
+                    className="block w-fit rounded-sm bg-paper p-1.5 transition-transform hover:-translate-y-0.5"
+                  >
+                    <Image
+                      src={download.qr.src}
+                      alt={download.qr.alt}
+                      width={download.qr.width}
+                      height={download.qr.height}
+                      className="h-24 w-24 rounded-[3px]"
+                    />
+                  </a>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </main>
   );
 }
