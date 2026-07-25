@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { existsSync } from "node:fs";
-import path from "node:path";
 import { ProjectPageTracker } from "@/components/projects/ProjectPageTracker";
 import { projects } from "@/content/projects";
 import type { ImageRef } from "@/content/types";
@@ -205,12 +203,7 @@ const videoSlots = [
   },
 ];
 
-const publicAssetExists = (src: string) =>
-  existsSync(path.join(process.cwd(), "public", src));
-
-const availableVideos = videoSlots.filter((video) =>
-  publicAssetExists(video.src),
-);
+const availableVideos = videoSlots;
 
 function MediaFrame({
   image,
