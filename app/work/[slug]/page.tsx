@@ -8,9 +8,10 @@ import { ProjectPageTracker } from "@/components/projects/ProjectPageTracker";
 import { ProjectExternalLinks, ProjectDownloads } from "@/components/projects/ProjectLinks";
 
 export function generateStaticParams() {
-  // "speakeasy" has its own dedicated route at app/work/speakeasy/page.tsx.
+  // Some projects have dedicated, narrative case-study routes under app/work.
+  const customProjectRoutes = new Set(["speakeasy", "mechanical-cuckoo-clock"]);
   return projects
-    .filter((p) => p.slug !== "speakeasy")
+    .filter((p) => !customProjectRoutes.has(p.slug))
     .map((p) => ({ slug: p.slug }));
 }
 
