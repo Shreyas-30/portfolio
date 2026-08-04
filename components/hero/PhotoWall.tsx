@@ -11,13 +11,13 @@ import { imageFill } from "@/lib/image";
 const SLOT_COUNT = 10;
 type Orient = "portrait" | "landscape" | "square";
 const SLOT_PREF: Orient[] = [
-  "landscape", // s0 — feature (large, ~square; landscape reads well big)
-  "square", // s1
-  "portrait", // s2
-  "portrait", // s3
-  "portrait", // s4
-  "square", // s5
-  "portrait", // s6
+  "landscape", // s0 — feature
+  "portrait", // s1
+  "square", // s2
+  "landscape", // s3
+  "square", // s4
+  "landscape", // s5
+  "landscape", // s6
   "portrait", // s7
   "landscape", // s8
   "landscape", // s9
