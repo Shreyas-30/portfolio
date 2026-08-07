@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import type { MouseEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import type { HeroTile } from "@/content/types";
 import { imageFill } from "@/lib/image";
@@ -15,7 +16,7 @@ const SLOT_PREF: Orient[] = [
   "portrait", // s1
   "square", // s2
   "landscape", // s3
-  "square", // s4
+  "landscape", // s4
   "landscape", // s5
   "landscape", // s6
   "portrait", // s7
@@ -49,7 +50,23 @@ export function PhotoWall({ tiles }: { tiles: HeroTile[] }) {
   const reduce = useReducedMotion();
   const [assignment, setAssignment] = useState<number[]>(() => initialAssignment(tiles));
   const [visibleCount, setVisibleCount] = useState(SLOT_COUNT);
+  const [activeSlot, setActiveSlot] = useState<number | null>(null);
   const tick = useRef(0);
+
+  const handlePointerMove = (event: MouseEvent<HTMLDivElement>) => {
+    if (reduce) return;
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+    const cropX = 50 + (x - 0.5) * 10;
+    const cropY = 50 + (y - 0.5) * 10;
+
+    event.currentTarget.style.setProperty("--crop-x", `${cropX}%`);
+    event.currentTarget.style.setProperty("--crop-y", `${cropY}%`);
+    event.currentTarget.style.setProperty("--pointer-x", `${x * 100}%`);
+    event.currentTarget.style.setProperty("--pointer-y", `${y * 100}%`);
+  };
 
   // Track how many slots are visible at the current breakpoint so we
   // only cycle photos into tiles the viewer can actually see.
@@ -92,19 +109,30 @@ export function PhotoWall({ tiles }: { tiles: HeroTile[] }) {
   }, [reduce, tiles, visibleCount]);
 
   return (
-    <div className="photo-wall">
+    <div className={activeSlot === null ? "photo-wall" : "photo-wall is-hovering"}>
       {Array.from({ length: SLOT_COUNT }, (_, slot) => {
         const tile = tiles[assignment[slot]];
         return (
           <div
             key={slot}
-            className={`wall-slot wall-slot-${slot}`}
+            className={`wall-slot wall-slot-${slot}${
+              activeSlot === slot ? " is-active" : ""
+            }${activeSlot !== null && activeSlot !== slot ? " is-neighbor" : ""}`}
             style={{ gridArea: `s${slot}` }}
+            onMouseEnter={() => setActiveSlot(slot)}
+            onMouseLeave={(event) => {
+              setActiveSlot(null);
+              event.currentTarget.style.removeProperty("--crop-x");
+              event.currentTarget.style.removeProperty("--crop-y");
+              event.currentTarget.style.removeProperty("--pointer-x");
+              event.currentTarget.style.removeProperty("--pointer-y");
+            }}
+            onMouseMove={handlePointerMove}
           >
             <AnimatePresence initial={false}>
               <motion.div
                 key={tile.id}
-                className="absolute inset-0"
+                className="wall-slot-media absolute inset-0"
                 initial={reduce ? false : { opacity: 0, scale: 1.06 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
@@ -117,7 +145,7 @@ export function PhotoWall({ tiles }: { tiles: HeroTile[] }) {
                   {...imageFill(tile)}
                   fill
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 50vw"
-                  className="object-cover"
+                  className="wall-slot-image object-cover"
                   priority={slot < 6}
                 />
                 {tile.accent && (

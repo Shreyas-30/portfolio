@@ -45,6 +45,13 @@ export const heroTiles: HeroTile[] = [
     3277,
   ),
   tile(
+    "hero-pingu",
+    "/images/hero/pingu.JPG",
+    "Pingu prototype detail",
+    4000,
+    3545,
+  ),
+  tile(
     "hero-cnc",
     "/images/hero/cnc.jpg",
     "CNC fabrication detail",
@@ -62,8 +69,8 @@ export const heroTiles: HeroTile[] = [
     "hero-chakra",
     "/images/hero/chakra.PNG",
     "Machined chakra detail",
-    1080,
-    1080,
+    426,
+    538,
     true,
   ),
   tile(
