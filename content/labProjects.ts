@@ -11,6 +11,10 @@ export type LabProject = {
   year: string;
   href: string;
   thumbnail: ImageRef;
+  images?: {
+    image: ImageRef;
+    caption?: string;
+  }[];
   links?: {
     label: string;
     href: string;
@@ -101,6 +105,17 @@ export const labProjects: LabProject[] = [
       width: 2000,
       height: 1200,
     },
+    images: [
+      {
+        image: {
+          src: "/images/projects/lab/hardmode/team_hardmode.JPEG",
+          alt: "Kairos team at MIT Hard Mode 2026",
+          width: 2025,
+          height: 2442,
+        },
+        caption: "Team photo from MIT Hard Mode 2026.",
+      },
+    ],
     facts: [
       { label: "Event", value: "MIT Hard Mode 2026" },
       { label: "Format", value: "48-hour hardware hackathon" },

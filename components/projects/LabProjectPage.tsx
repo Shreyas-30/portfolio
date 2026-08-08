@@ -5,7 +5,7 @@ import Link from "next/link";
 import posthog from "posthog-js";
 import { ProjectPageTracker } from "@/components/projects/ProjectPageTracker";
 import type { LabProject } from "@/content/labProjects";
-import { imageFill } from "@/lib/image";
+import { imageFill, imageProps } from "@/lib/image";
 
 function LabProjectLinks({ project }: { project: LabProject }) {
   if (!project.links || project.links.length === 0) return null;
@@ -115,6 +115,30 @@ export function LabProjectPage({ project }: { project: LabProject }) {
             <p className="mt-4 max-w-prose text-base leading-relaxed text-ink/75">
               {project.demo.body}
             </p>
+          </div>
+        </section>
+      )}
+
+      {project.images && project.images.length > 0 && (
+        <section className="mt-14">
+          <p className="kicker mb-6">project moments</p>
+          <div className="grid gap-8 md:grid-cols-[minmax(260px,420px)_1fr] md:items-end">
+            {project.images.map((item) => (
+              <figure key={item.image.src} className="max-w-[420px]">
+                <div className="overflow-hidden rounded-lg bg-paper-2">
+                  <Image
+                    {...imageProps(item.image)}
+                    sizes="(max-width: 768px) 100vw, 420px"
+                    className="h-auto w-full"
+                  />
+                </div>
+                {item.caption && (
+                  <figcaption className="mt-3 text-center font-mono text-[11px] uppercase tracking-[0.14em] text-pencil">
+                    {item.caption}
+                  </figcaption>
+                )}
+              </figure>
+            ))}
           </div>
         </section>
       )}
