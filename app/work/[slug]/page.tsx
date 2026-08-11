@@ -37,7 +37,7 @@ export default async function ProjectPage({
     project.thumbnailFit === "contain" ? "object-contain" : "object-cover";
 
   return (
-    <main className="relative z-[2] mx-auto w-full max-w-5xl px-6 pb-32 pt-20 sm:px-10">
+    <main className="relative z-[2] mx-auto w-full max-w-5xl px-6 pb-32 pt-32 sm:px-10 sm:pt-36">
       <ProjectPageTracker slug={project.slug} title={project.title} tags={project.tags} />
       <Link href="/work" className="font-mono text-[13px] text-pencil hover:text-accent">
         ← back to work

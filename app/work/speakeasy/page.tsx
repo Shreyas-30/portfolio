@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function SpeakEasyPage() {
   return (
-    <main className="relative z-[2] w-full pb-32 pt-20">
+    <main className="relative z-[2] w-full pb-32 pt-32 sm:pt-36">
       <ProjectPageTracker
         slug={project.slug}
         title={project.title}

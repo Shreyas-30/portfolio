@@ -93,3 +93,35 @@ export type PhotoCollection = {
   description?: string;
   photos: Photo[];
 };
+
+export type NowMedia = ImageRef & {
+  id: string;
+};
+
+export type NowLinkPreview = {
+  url: string;
+  title?: string;
+  description?: string;
+  siteName?: string;
+  image?: ImageRef;
+  imageUrl?: string;
+};
+
+export type NowPost =
+  | {
+      id: string;
+      type: "post";
+      date: string;
+      body: string;
+      media?: NowMedia[];
+      links?: NowLinkPreview[];
+    }
+  | {
+      id: string;
+      type: "collection";
+      date: string;
+      body: string;
+      collectionSlug: string;
+      href: string;
+      mediaPreview: NowMedia[];
+    };

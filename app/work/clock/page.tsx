@@ -365,7 +365,7 @@ export default function MechanicalCuckooClockPage() {
   if (!project) notFound();
 
   return (
-    <main className="relative z-[2] mx-auto w-full max-w-6xl px-6 pb-32 pt-20 sm:px-10">
+    <main className="relative z-[2] mx-auto w-full max-w-6xl px-6 pb-32 pt-32 sm:px-10 sm:pt-36">
       <ProjectPageTracker
         slug={project.slug}
         title={project.title}

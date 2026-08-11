@@ -14,7 +14,7 @@ export default function PhotosPage() {
   );
 
   return (
-    <main className="relative z-[2] mx-auto w-full max-w-6xl px-6 pb-32 pt-20 sm:px-10">
+    <main className="relative z-[2] mx-auto w-full max-w-6xl px-6 pb-32 pt-32 sm:px-10 sm:pt-36">
       <header className="flex items-baseline justify-between gap-4">
         <h1 className="font-display text-5xl font-semibold sm:text-6xl">
           Photos<span className="text-accent">.</span>

@@ -56,7 +56,7 @@ const interests = [
 
 export default function AboutPage() {
   return (
-    <main className="relative z-[2] mx-auto w-full max-w-5xl px-6 pb-32 pt-20 sm:px-10">
+    <main className="relative z-[2] mx-auto w-full max-w-5xl px-6 pb-32 pt-32 sm:px-10 sm:pt-36">
       <section className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:items-end">
         <div>
           <p className="kicker">About</p>

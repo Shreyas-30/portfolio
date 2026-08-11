@@ -138,20 +138,20 @@ function PreviewPanel({ entry }: { entry: WorkEntry }) {
   };
 
   const content = (
-    <div className="relative -ml-6 w-[min(100%,calc(166.667vh-45rem))] overflow-hidden rounded-lg bg-paper-2/54">
+    <div className="relative -ml-6 w-[min(100%,calc((100vh-29rem)*1.6667))] overflow-hidden rounded-lg bg-paper-2/54">
       <div className="relative aspect-[5/3] w-full overflow-hidden bg-paper-2">
         <PreviewMedia entry={entry} />
       </div>
 
-      <div className="relative grid h-[190px] grid-rows-[auto_auto_1fr] px-5 pb-4 pt-4 xl:px-6 xl:pb-5 xl:pt-5">
-        <h2 className="line-clamp-1 min-h-[2.75rem] font-display text-[2.5rem] font-semibold leading-[0.95] xl:min-h-[3.05rem] xl:text-[2.75rem]">
+      <div className="relative grid h-[172px] grid-rows-[auto_auto_1fr] px-5 pb-3.5 pt-3.5 xl:px-6 xl:pb-4 xl:pt-4">
+        <h2 className="line-clamp-1 min-h-[2.45rem] font-display text-[2.25rem] font-semibold leading-[0.95] xl:min-h-[2.7rem] xl:text-[2.5rem]">
           {entry.title}
         </h2>
-        <p className="mt-2 line-clamp-2 min-h-[2.6rem] max-w-[56ch] text-[0.95rem] leading-snug text-ink/75 xl:text-base">
+        <p className="mt-1.5 line-clamp-2 min-h-[2.35rem] max-w-[56ch] text-[0.9rem] leading-snug text-ink/75 xl:text-[0.95rem]">
           {entry.description}
         </p>
 
-        <div className="mt-3 flex items-end justify-between gap-6 border-t border-ink/15 pt-3">
+        <div className="mt-2.5 flex items-end justify-between gap-6 border-t border-ink/15 pt-2.5">
           <p className="flex min-w-0 items-center gap-3 font-mono text-[10px] uppercase tracking-[0.14em] text-pencil xl:text-[10.5px]">
             <span className="shrink-0">{entry.year}</span>
             <span className="shrink-0 text-pencil/40">·</span>
@@ -333,9 +333,9 @@ export function WorkDesktopIndex({ projects }: { projects: Project[] }) {
         {sections.map((section) => (
           <section
             key={section.label}
-            className="py-3 first:pt-0 last:pb-0"
+            className="py-2 first:pt-0 last:pb-0"
           >
-            <h2 className="mb-2 px-3 font-mono text-[10px] uppercase tracking-[0.18em] text-pencil">
+            <h2 className="mb-1.5 px-3 font-mono text-[10px] uppercase tracking-[0.18em] text-pencil">
               {section.label}
             </h2>
             <div className="space-y-0.5">
@@ -356,7 +356,7 @@ export function WorkDesktopIndex({ projects }: { projects: Project[] }) {
         ))}
       </div>
 
-      <aside className="sticky top-24 self-start min-w-0">
+      <aside className="self-start min-w-0">
         <div className="relative w-full">
           <AnimatedPreview entry={activeEntry} />
         </div>

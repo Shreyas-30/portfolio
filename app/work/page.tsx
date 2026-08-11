@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return (
-    <main className="relative z-[2] mx-auto w-full max-w-7xl px-6 pb-32 pt-20 sm:px-10 lg:min-h-screen lg:pb-10 lg:pt-20">
+    <main className="relative z-[2] mx-auto w-full max-w-7xl px-6 pb-32 pt-32 sm:px-10 sm:pt-36 lg:h-screen lg:overflow-hidden lg:pb-6 lg:pt-28">
       {/* Mobile header keeps the original work page treatment. */}
       <div className="flex items-baseline justify-between lg:hidden">
         <h1 className="font-display text-4xl font-semibold sm:text-5xl">
@@ -29,9 +29,9 @@ export default function WorkPage() {
         </div>
       </div>
 
-      <hr className="mt-6 border-t border-ink/20 lg:mt-5" />
+      <hr className="mt-6 border-t border-ink/20 lg:mt-4" />
 
-      <div className="mt-8 hidden lg:block">
+      <div className="mt-5 hidden lg:block">
         <WorkDesktopIndex projects={projects} />
       </div>
 

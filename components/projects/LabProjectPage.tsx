@@ -40,7 +40,7 @@ function LabProjectLinks({ project }: { project: LabProject }) {
 
 export function LabProjectPage({ project }: { project: LabProject }) {
   return (
-    <main className="relative z-[2] mx-auto w-full max-w-5xl px-6 pb-32 pt-20 sm:px-10">
+    <main className="relative z-[2] mx-auto w-full max-w-5xl px-6 pb-32 pt-32 sm:px-10 sm:pt-36">
       <ProjectPageTracker
         slug={project.slug}
         title={project.title}
