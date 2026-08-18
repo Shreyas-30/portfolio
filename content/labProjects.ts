@@ -154,10 +154,10 @@ export const labProjects: LabProject[] = [
     year: "2026",
     href: "/work/lerobot-so101",
     thumbnail: {
-      src: "/images/projects/lab/lerobotso101/lerobot.png",
+      src: "/images/projects/lab/lerobotso101/lerobot.jpg",
       alt: "LeRobot SO-101 robotic arm project preview",
-      width: 3000,
-      height: 1800,
+      width: 4032,
+      height: 3024,
     },
     links: [
       {
