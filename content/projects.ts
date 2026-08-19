@@ -345,7 +345,7 @@ export const projects: Project[] = [
     year: "FALL 2025",
     description:
       "Walnut, aluminium, brass, acrylic. CNC lathe, CNC router, laser cutting, anodization. Built with three teammates over a semester.",
-    body: "Space Chess is a material-driven chess set that reimagines a familiar game as something tactile, sculptural, and slightly otherworldly. We combined CNC-turned aluminum and brass pieces with a routed walnut board, laser-cut acrylic, sheet metal details, and anodized finishes.",
+    body: "This project was part of the IPD5010 machining class. The brief was to design and fabricate a themed chess set as a way to learn using Haas TL-1 lathe.",
     details: [
       { label: "Course", value: "IPD 5010" },
       {
@@ -373,10 +373,10 @@ export const projects: Project[] = [
       },
     ],
     thumbnail: {
-      src: "/images/projects/spacechess/thumbnail.JPG",
+      src: "/images/projects/spacechess/thumbnail.png",
       alt: "Space Chess — machined chess set",
-      width: 7008,
-      height: 4672,
+      width: 1536,
+      height: 1152,
     },
     previewTilt: -3,
     href: "/work/space-chess",
@@ -418,44 +418,14 @@ export const projects: Project[] = [
         height: 540,
       },
       {
-        src: "/images/projects/spacechess/6.png",
+        src: "/images/projects/spacechess/10.png",
         alt: "Space Chess — slide 7",
         width: 960,
         height: 540,
       },
       {
-        src: "/images/projects/spacechess/7.png",
+        src: "/images/projects/spacechess/13.png",
         alt: "Space Chess — slide 8",
-        width: 960,
-        height: 540,
-      },
-      {
-        src: "/images/projects/spacechess/8.png",
-        alt: "Space Chess — slide 9",
-        width: 960,
-        height: 540,
-      },
-      {
-        src: "/images/projects/spacechess/9.png",
-        alt: "Space Chess — slide 10",
-        width: 960,
-        height: 540,
-      },
-      {
-        src: "/images/projects/spacechess/10.png",
-        alt: "Space Chess — slide 11",
-        width: 960,
-        height: 540,
-      },
-      {
-        src: "/images/projects/spacechess/11.png",
-        alt: "Space Chess — slide 12",
-        width: 960,
-        height: 540,
-      },
-      {
-        src: "/images/projects/spacechess/12.png",
-        alt: "Space Chess — slide 13",
         width: 960,
         height: 540,
       },

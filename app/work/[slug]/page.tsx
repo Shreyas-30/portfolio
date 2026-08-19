@@ -12,6 +12,7 @@ export function generateStaticParams() {
   const customProjectRoutes = new Set([
     "speakeasy",
     "mechanical-cuckoo-clock",
+    "space-chess",
     "pingu",
   ]);
   return projects
