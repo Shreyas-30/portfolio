@@ -101,13 +101,11 @@ function PreviewMedia({ entry }: { entry: WorkEntry }) {
       ? "object-contain scale-[1.16] p-3"
       : entry.id === "mechanical-cuckoo-clock"
         ? "object-cover"
-      : entry.thumbnailFit === "contain"
-        ? "object-contain p-8"
-        : "object-cover";
+        : entry.thumbnailFit === "contain"
+          ? "object-contain p-8"
+          : "object-cover";
   const previewBg =
-    entry.id === "mechanical-cuckoo-clock"
-      ? "#f4f4f1"
-      : entry.thumbnailBg;
+    entry.id === "mechanical-cuckoo-clock" ? "#f4f4f1" : entry.thumbnailBg;
 
   return (
     <div
@@ -326,16 +324,14 @@ export function WorkDesktopIndex({ projects }: { projects: Project[] }) {
   );
   const entries = sections.flatMap((section) => section.entries);
   const [activeId, setActiveId] = useState(entries[0]?.id ?? "");
-  const activeEntry = entries.find((entry) => entry.id === activeId) ?? entries[0];
+  const activeEntry =
+    entries.find((entry) => entry.id === activeId) ?? entries[0];
 
   return (
     <div className="hidden lg:grid lg:grid-cols-[minmax(390px,0.48fr)_minmax(0,1.52fr)] lg:gap-7 xl:grid-cols-[minmax(420px,0.5fr)_minmax(0,1.5fr)]">
       <div className="pr-1 xl:pr-2">
         {sections.map((section) => (
-          <section
-            key={section.label}
-            className="py-2 first:pt-0 last:pb-0"
-          >
+          <section key={section.label} className="py-2 first:pt-0 last:pb-0">
             <h2 className="mb-1.5 px-3 font-mono text-[10px] uppercase tracking-[0.18em] text-pencil">
               {section.label}
             </h2>

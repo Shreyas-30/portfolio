@@ -95,7 +95,7 @@ const manufacturingSteps = [
   },
   {
     title: "Machine the second half",
-    body: "Each half needed its own CAM and careful tool numbering. The goal was less about novelty and more about getting both halves to meet cleanly.",
+    body: "Each half needed its own CAM and careful tool numbering. The goal was getting both halves to meet cleanly.",
     image: {
       src: "/images/projects/pingu/pingu_manufacturing_mill_2.png",
       alt: "Pingu second body half machining process",
@@ -112,7 +112,7 @@ const finishingImages = [
     width: 854,
     height: 1066,
     label: "deburring and polish",
-    body: "The front belly was masked and polished to keep a bright contrast against the softer blasted surfaces.",
+    body: "The front belly was polished to keep a bright contrast against the softer blasted surfaces.",
   },
   {
     src: "/images/projects/pingu/pingu_post_sandblasting.png",
@@ -120,7 +120,7 @@ const finishingImages = [
     width: 854,
     height: 1066,
     label: "sandblasting",
-    body: "Sandblasting softened the body and head, making the final object feel less like raw milled stock and more like a finished character.",
+    body: "Masked the belly and sandblasted the body and head helping hide the tool marks and create a more uniform surface finish.",
   },
 ];
 
@@ -308,7 +308,7 @@ export default function PinguPage() {
         <SectionHeader
           kicker="03 · v2"
           title="Splitting the body made the object manufacturable"
-          body="The second version became a front-and-back assembly. Each half could be milled separately with higher fidelity and less setup drama, then aligned with holes and finished as one object."
+          body="The second version became a front-and-back assembly. Each half could be milled separately with higher fidelity and less setup drama, then aligned and put together with dowel pins as one finished object."
         />
         <div className="mt-5">
           <div className="mb-3">
@@ -404,7 +404,7 @@ export default function PinguPage() {
         <SectionHeader
           kicker="05 · finishing"
           title="Polish, blast, assemble"
-          body="The beak and feet stayed as printed press-fit parts, while the machined body got a more characterful contrast: polished belly, sandblasted body, and cleaned edges."
+          body="We introduced contrast with two finishing processes"
         />
         <div className="grid gap-4 md:grid-cols-2">
           {finishingImages.map((item) => (

@@ -145,7 +145,8 @@ export const projects: Project[] = [
       },
       {
         label: "Output",
-        value: "Live web platform, digital archive, physical memory book concept",
+        value:
+          "Live web platform, digital archive, physical memory book concept",
       },
     ],
     sections: [
@@ -466,9 +467,8 @@ export const projects: Project[] = [
     subtitle: "Machined character object",
     tags: ["MECHANICAL", "CAD", "MACHINING", "FABRICATION"],
     year: "FALL 2025",
-    description:
-      "A CNC-machined tabletop eye-candy object made from 6061 aluminum, with 3D printed character details and mixed surface finishing.",
-    body: "Pingu is a small character-object study from IPD 5010. The brief was to create a tabletop eye-candy object from a 500 x 500 x 250 block of 6061 aluminum on the Haas Mini Mill in three weeks. The final direction translated Pingu into a manufacturable two-part body with 3D printed beak and feet, press-fit details, and a finish plan that used sandblasting and polishing to keep the character alive.",
+    description: "A CNC-machined tabletop eye-candy object made from aluminum.",
+    body: "Pingu is a small character-object as part of milling study from IPD 5010. The brief was to create a tabletop eye-candy object from a 500 x 500 x 250 block of 6061 aluminum on the Haas Mini Mill in three weeks.",
     details: [
       { label: "Course", value: "IPD 5010" },
       { label: "Team", value: "Mark & Shreyas" },
@@ -477,7 +477,7 @@ export const projects: Project[] = [
     ],
     thumbnail: {
       src: "/images/projects/pingu/thumbnail.JPG",
-      alt: "Pingu machined character object",
+      alt: "Pingu machined candy",
       width: 4000,
       height: 3545,
     },
