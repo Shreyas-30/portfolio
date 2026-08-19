@@ -31,6 +31,7 @@ const previewSubtitles: Record<string, string> = {
   smriti: "family storytelling",
   "mechanical-cuckoo-clock": "all-mechanical timepiece",
   "space-chess": "machined chess set",
+  pingu: "machined character",
   birdie: "machined multitool",
   amtrak: "rail booking redesign",
   "autonomous-battlebot": "mechatronics",

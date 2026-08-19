@@ -9,7 +9,11 @@ import { ProjectExternalLinks, ProjectDownloads } from "@/components/projects/Pr
 
 export function generateStaticParams() {
   // Some projects have dedicated, narrative case-study routes under app/work.
-  const customProjectRoutes = new Set(["speakeasy", "mechanical-cuckoo-clock"]);
+  const customProjectRoutes = new Set([
+    "speakeasy",
+    "mechanical-cuckoo-clock",
+    "pingu",
+  ]);
   return projects
     .filter((p) => !customProjectRoutes.has(p.slug))
     .map((p) => ({ slug: p.slug }));

@@ -461,6 +461,30 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "pingu",
+    title: "Pingu",
+    subtitle: "Machined character object",
+    tags: ["MECHANICAL", "CAD", "MACHINING", "FABRICATION"],
+    year: "FALL 2025",
+    description:
+      "A CNC-machined tabletop eye-candy object made from 6061 aluminum, with 3D printed character details and mixed surface finishing.",
+    body: "Pingu is a small character-object study from IPD 5010. The brief was to create a tabletop eye-candy object from a 500 x 500 x 250 block of 6061 aluminum on the Haas Mini Mill in three weeks. The final direction translated Pingu into a manufacturable two-part body with 3D printed beak and feet, press-fit details, and a finish plan that used sandblasting and polishing to keep the character alive.",
+    details: [
+      { label: "Course", value: "IPD 5010" },
+      { label: "Team", value: "Mark & Shreyas" },
+      { label: "Brief", value: "Tabletop eye candy from 6061 aluminum" },
+      { label: "Process", value: "CAD/CAM · Haas Mini Mill · 3D printing" },
+    ],
+    thumbnail: {
+      src: "/images/projects/pingu/thumbnail.JPG",
+      alt: "Pingu machined character object",
+      width: 4000,
+      height: 3545,
+    },
+    previewTilt: 6,
+    href: "/work/pingu",
+  },
+  {
     slug: "birdie",
     title: "Birdie",
     subtitle: "Machined multitool",
