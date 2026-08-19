@@ -433,7 +433,7 @@ export default function PinguPage() {
         </div>
       </section>
 
-      <section className="mt-16 grid gap-8 border-y border-ink/15 py-8 md:grid-cols-[13rem_1fr] md:gap-10">
+      <section className="mt-16 grid gap-8 border-t border-ink/15 py-8 md:grid-cols-[13rem_1fr] md:gap-10">
         <p className="kicker text-accent">06 · learnings</p>
         <div>
           <h2 className="font-display text-3xl font-semibold leading-tight sm:text-4xl">
