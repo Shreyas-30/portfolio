@@ -275,7 +275,7 @@ export default function PinguPage() {
       <section className="mt-16">
         <SectionHeader
           kicker="02 · v1"
-          title="The first CAD tried to mill the whole figure from one block."
+          title="The first CAD tried to mill the whole figure from one block"
           body="Version one assumed we could machine the full form by flipping the stock. It looked plausible on screen, but it was awkward in the Mini Mill vice, hard to mount cleanly, and the machining time was already pushing past what the project could support."
         />
         <div className="grid gap-4 md:grid-cols-2 md:items-center">
@@ -307,7 +307,7 @@ export default function PinguPage() {
       <section className="mt-16">
         <SectionHeader
           kicker="03 · v2"
-          title="Splitting the body made the object manufacturable."
+          title="Splitting the body made the object manufacturable"
           body="The second version became a front-and-back assembly. Each half could be milled separately with higher fidelity and less setup drama, then aligned with holes and finished as one object."
         />
         <div className="mt-5">
@@ -458,7 +458,7 @@ export default function PinguPage() {
       <section className="mt-16">
         <SectionHeader
           kicker="07 · final"
-          title="Created a fun stop motion with the finished Pingu."
+          title="Created a fun stop motion with the finished Pingu"
         />
         <div className="mx-auto max-w-[32rem] overflow-hidden rounded-lg">
           <video
