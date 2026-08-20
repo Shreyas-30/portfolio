@@ -700,7 +700,7 @@ export const projects: Project[] = [
     year: "SPRING 2025",
     description:
       "An autonomous mini battlebot built around ESP32 control, ToF sensing, and rapid-fabricated mechanical parts.",
-    body: "Autonomous Battlebot is a small robotics platform built to sense, decide, and move without direct driver control. The bot uses an ESP32 microcontroller as the control layer, I2C communication for sensor integration, and time-of-flight sensors to detect nearby objects and react in real time. The chassis and mechanisms combined 3D-printed parts with laser-cut structural pieces, making it a compact exercise in embedded control, sensing, mechanical packaging, and fast physical iteration.",
+    body: "This came out of the MEAM510 mechatronics course at Penn which I audited, where the final project was a battlebot competition on a game arena. The bot had to navigate autonomously and semi-autonomously, capture towers, score points, and survive against other teams’ robots, so the project became a mix of quick mechanical iteration, embedded software, and strategy.",
     details: [
       { label: "Controller", value: "ESP32" },
       { label: "Sensors", value: "I2C time-of-flight distance sensors" },
@@ -711,10 +711,10 @@ export const projects: Project[] = [
       },
     ],
     thumbnail: {
-      src: "/images/projects/mechatronics/mechatronics_thumbnail.jpg",
+      src: "/images/projects/mechatronics/thumbnail.png",
       alt: "Autonomous Battlebot robot",
-      width: 1280,
-      height: 1078,
+      width: 828,
+      height: 892,
     },
     previewTilt: 6,
     href: "/work/autonomous-battlebot",

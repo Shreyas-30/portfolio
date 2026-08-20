@@ -14,6 +14,7 @@ export function generateStaticParams() {
     "mechanical-cuckoo-clock",
     "space-chess",
     "pingu",
+    "autonomous-battlebot",
   ]);
   return projects
     .filter((p) => !customProjectRoutes.has(p.slug))
