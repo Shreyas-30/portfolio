@@ -41,6 +41,12 @@ const assets = {
     width: 942,
     height: 707,
   },
+  roba: {
+    src: "/images/projects/mechatronics/ROBA.png",
+    alt: "Robot Battle Arena gameplay overview",
+    width: 812,
+    height: 516,
+  },
   v3Schematic: {
     src: "/images/projects/mechatronics/v3_schematic.png",
     alt: "Autonomous Battlebot V3 time-of-flight sensor alignment schematic",
@@ -195,6 +201,34 @@ export default function AutonomousBattlebotPage() {
               </div>
             ))}
           </dl>
+        </div>
+      </section>
+
+      <section className="mt-16 overflow-hidden rounded-xl border border-ink/12 bg-paper-2/45 p-5 sm:p-7">
+        <div className="grid gap-7 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div>
+            <p className="kicker text-accent">ROBA Gameplay</p>
+            <div className="mt-4 space-y-4 text-base leading-relaxed text-ink/78 sm:text-lg">
+              <p>
+                The Robot Battle Arena game is inspired by Multiplayer Online
+                Battle Arena games. The goal is to destroy the opposing team’s
+                nexus while defending your own.
+              </p>
+              <p>
+                For the first 30 seconds, robots navigate autonomously using
+                wall-following and localization through the HTC Vive Lighthouse
+                system. After that, teams can send Wi-Fi packets to their bot,
+                but every command costs robot health.
+              </p>
+            </div>
+          </div>
+
+          <ImageCard
+            image={assets.roba}
+            className="aspect-[812/516]"
+            imageClassName="object-contain"
+            framed={false}
+          />
         </div>
       </section>
 

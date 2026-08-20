@@ -278,7 +278,7 @@ export const speakeasyContent = {
     {
       k: "03",
       label: "Two prototypes",
-      head: "LangLearn and Verba, built and tested",
+      head: "Building and testing",
     },
     { k: "04", label: "The pivot", head: "Meet the 4%" },
     { k: "05", label: "The product", head: "A feed you learn inside" },
