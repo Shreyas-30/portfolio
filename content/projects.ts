@@ -700,7 +700,7 @@ export const projects: Project[] = [
     year: "SPRING 2025",
     description:
       "An autonomous mini battlebot built around ESP32 control, ToF sensing, and rapid-fabricated mechanical parts.",
-    body: "This came out of the MEAM510 mechatronics course at Penn which I audited, where the final project was a battlebot competition on a game arena. The bot had to navigate autonomously and semi-autonomously, capture towers, score points, and survive against other teams’ robots, so the project became a mix of quick mechanical iteration, embedded software, and strategy.",
+    body: "This came out of the MEAM510 mechatronics course at Penn which I audited, where the final project was a battlebot competition on a game arena. The bot had to navigate autonomously and semi-autonomously, capture towers, score points, and survive against other teams’ robots.",
     details: [
       { label: "Controller", value: "ESP32" },
       { label: "Sensors", value: "I2C time-of-flight distance sensors" },

@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { createPortal } from "react-dom";
 import { speakeasyContent as C } from "@/content/speakeasy";
 import { MediaSlot } from "./MediaSlot";
 import styles from "./case-file.module.css";
@@ -192,7 +193,7 @@ export function PrototypeCaseFiles() {
             }}
             role="button"
             tabIndex={0}
-            data-tip="preview coming soon"
+            data-tip="open prototype notes"
             onClick={() => openCard(ci)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
@@ -252,89 +253,256 @@ export function PrototypeCaseFiles() {
       </div>
 
       {/* case-file overlay */}
-      {mountedIndex !== null && activeConcept && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-[4vh_3vw]">
-          <div
-            className={`absolute inset-0 bg-[rgba(28,26,22,.45)] backdrop-blur-[3px] ${styles.backdrop} ${
-              isOpen ? "opacity-100" : "opacity-0"
-            }`}
-            onClick={closeOverlay}
-          />
-          <div
-            ref={panelRef}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="case-file-heading"
-            tabIndex={-1}
-            className={`relative flex max-h-[88vh] w-[min(860px,100%)] flex-col rounded-2xl border border-[#c8c2b0] bg-paper shadow-[0_40px_100px_rgba(28,26,22,0.4)] ${styles.panel} ${
-              isOpen ? "scale-100 opacity-100" : "scale-[.96] opacity-0"
-            }`}
-          >
-            <span className="absolute -top-px left-[34px] -translate-y-full rounded-t-lg bg-ink px-4 py-1.5 font-mono text-[10px] uppercase tracking-wide text-paper">
-              prototype notes · {activeConcept.k}
-            </span>
-            <div className="overflow-auto rounded-2xl px-[clamp(22px,3.5vw,44px)] pb-10 pt-[34px]">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
-                    {activeConcept.k}
-                  </p>
-                  <h4
-                    id="case-file-heading"
-                    className="mt-2 font-display text-[26px] font-semibold leading-snug"
+      {mountedIndex !== null &&
+        activeConcept &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div className="fixed inset-0 z-[1000] flex items-center justify-center p-[4vh_3vw]">
+            <div
+              className={`absolute inset-0 bg-[rgba(28,26,22,.45)] backdrop-blur-[3px] ${styles.backdrop} ${
+                isOpen ? "opacity-100" : "opacity-0"
+              }`}
+              onClick={closeOverlay}
+            />
+            <div
+              ref={panelRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="case-file-heading"
+              tabIndex={-1}
+              className={`relative flex max-h-[88vh] w-[min(860px,100%)] flex-col rounded-2xl border border-[#c8c2b0] bg-paper shadow-[0_40px_100px_rgba(28,26,22,0.4)] ${styles.panel} ${
+                isOpen ? "scale-100 opacity-100" : "scale-[.96] opacity-0"
+              }`}
+            >
+              <span className="absolute -top-px left-[34px] -translate-y-full rounded-t-lg bg-ink px-4 py-1.5 font-mono text-[10px] uppercase tracking-wide text-paper">
+                prototype notes · {activeConcept.k}
+              </span>
+              <div
+                className={`${styles.scrollArea} overflow-y-auto overflow-x-hidden rounded-2xl px-[clamp(22px,3.5vw,44px)] pb-10 pt-[34px]`}
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                      {activeConcept.k}
+                    </p>
+                    <h4
+                      id="case-file-heading"
+                      className="mt-2 font-display text-[26px] font-semibold leading-snug"
+                    >
+                      {activeConcept.name}
+                    </h4>
+                    <span className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                      {activeConcept.sub}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    data-close-btn
+                    onClick={closeOverlay}
+                    className="whitespace-nowrap rounded-full border border-ink/15 px-3.5 py-1.5 font-mono text-[10.5px] uppercase tracking-wide text-pencil transition-colors hover:border-pencil hover:text-ink"
                   >
-                    {activeConcept.name}
-                  </h4>
-                  <span className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
-                    {activeConcept.sub}
-                  </span>
+                    ✕ close
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  data-close-btn
-                  onClick={closeOverlay}
-                  className="whitespace-nowrap rounded-full border border-ink/15 px-3.5 py-1.5 font-mono text-[10.5px] uppercase tracking-wide text-pencil transition-colors hover:border-pencil hover:text-ink"
-                >
-                  ✕ close
-                </button>
-              </div>
 
-              <div className="mt-8 rounded-xl border border-ink/12 bg-white/35 px-5 py-6">
-                <p className="font-mono text-[10.5px] uppercase tracking-[0.15em] text-accent">
-                  Coming soon
-                </p>
-                <h5 className="mt-3 font-display text-[clamp(26px,3vw,34px)] font-semibold leading-tight">
-                  A deeper look at how this prototype shaped SpeakEasy.
-                </h5>
-                <p className="mt-4 max-w-[58ch] text-[15px] leading-relaxed text-ink/72">
-                  I am turning this into a focused mini case study with the
-                  storyboard, test feedback, key iterations, and the specific
-                  decisions that carried forward into the final product.
-                </p>
-              </div>
+                {activeConcept.name === "Verba" ? (
+                  <div className="mt-8 space-y-6">
+                    <div>
+                      <p className="font-mono text-[10.5px] uppercase tracking-[0.15em] text-accent">
+                        Storyboard
+                      </p>
+                      <MediaSlot
+                        filename="verba_storyboard.png"
+                        alt="Verba concept storyboard"
+                        caption="Verba storyboard"
+                        aspect="aspect-[4429/790]"
+                        fit="contain"
+                        className="mt-3"
+                      />
+                    </div>
 
-              <div className="mt-6 grid gap-4 min-[700px]:grid-cols-[1fr_1fr]">
-                <div>
-                  <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
-                    Prototype idea
-                  </p>
-                  <p className="mt-2 text-[14px] leading-relaxed text-ink/75">
-                    {activeConcept.what}
-                  </p>
-                </div>
-                <div>
-                  <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
-                    What carried forward
-                  </p>
-                  <p className="mt-2 text-[14px] leading-relaxed text-ink/75">
-                    {activeConcept.verdict}
-                  </p>
-                </div>
+                    <div className="space-y-4 border-t border-ink/12 pt-5">
+                      <div>
+                        <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                          Prototype idea
+                        </p>
+                        <p className="mt-2 text-[14px] leading-relaxed text-ink/75">
+                          {activeConcept.what}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                          Build
+                        </p>
+                        <p className="mt-2 text-[14px] leading-relaxed text-ink/75">
+                          I built the scenario-based voice interaction part of
+                          the prototype using the OpenAI API, while Jenn built
+                          the AR part using AR Lens Studio.
+                        </p>
+                      </div>
+                      <div>
+                        <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                          What carried forward
+                        </p>
+                        <p className="mt-2 text-[14px] leading-relaxed text-ink/75">
+                          {activeConcept.verdict}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="grid gap-4 min-[700px]:grid-cols-2">
+                      <div>
+                        <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                          User POV from the glasses
+                        </p>
+                        <MediaSlot
+                          filename="cover-verba.png"
+                          alt="Verba prototype cover still"
+                          caption="Verba cover still"
+                          aspect="aspect-[4/3]"
+                          fit="cover"
+                          className="mt-3"
+                        />
+                      </div>
+                      <div>
+                        <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                          User testing
+                        </p>
+                        <MediaSlot
+                          filename="verba_testing.png"
+                          alt="Verba prototype user testing setup"
+                          caption="Verba testing"
+                          aspect="aspect-[4/3]"
+                          fit="cover"
+                          className="mt-3"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ) : activeConcept.name === "LangLearn" ? (
+                  <div className="mt-8 space-y-6">
+                    <div>
+                      <p className="font-mono text-[10.5px] uppercase tracking-[0.15em] text-accent">
+                        Chrome extension
+                      </p>
+                      <MediaSlot
+                        filename="langlearn_chrome.png"
+                        alt="LangLearn Chrome extension prototype"
+                        caption="LangLearn Chrome extension"
+                        aspect="aspect-[958/590]"
+                        fit="cover"
+                        className="mt-3"
+                      />
+                    </div>
+
+                    <div className="space-y-4 border-t border-ink/12 pt-5">
+                      <div>
+                        <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                          Prototype idea
+                        </p>
+                        <p className="mt-2 text-[14px] leading-relaxed text-ink/75">
+                          {activeConcept.what}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                          Build
+                        </p>
+                        <p className="mt-2 text-[14px] leading-relaxed text-ink/75">
+                          I built the entire extension and used it to the OpenAI
+                          API for content summarization and creating lessons.
+                          The mobile mockup was a Figma screen Ashley made.
+                        </p>
+                        <MediaSlot
+                          filename="langlearn_system.png"
+                          alt="LangLearn system diagram"
+                          caption="LangLearn system diagram"
+                          aspect="aspect-[5158/1594]"
+                          fit="contain"
+                          className="mt-4"
+                        />
+                      </div>
+                      <div>
+                        <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                          What carried forward
+                        </p>
+                        <p className="mt-2 text-[14px] leading-relaxed text-ink/75">
+                          {activeConcept.verdict}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="grid gap-4 min-[700px]:grid-cols-2">
+                      <div>
+                        <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                          Tracking controls
+                        </p>
+                        <MediaSlot
+                          filename="langlearn_tracking.png"
+                          alt="LangLearn tracking control prototype"
+                          caption="LangLearn tracking controls"
+                          aspect="aspect-[4/5]"
+                          fit="contain"
+                          className="mt-3"
+                        />
+                      </div>
+                      <div>
+                        <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                          Mobile lesson mockup
+                        </p>
+                        <MediaSlot
+                          filename="langlearn_mobile.png"
+                          alt="LangLearn mobile lesson mockup"
+                          caption="LangLearn mobile mockup"
+                          aspect="aspect-[4/5]"
+                          fit="contain"
+                          className="mt-3"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <div className="mt-8 rounded-xl border border-ink/12 bg-white/35 px-5 py-6">
+                      <p className="font-mono text-[10.5px] uppercase tracking-[0.15em] text-accent">
+                        Coming soon
+                      </p>
+                      <h5 className="mt-3 font-display text-[clamp(26px,3vw,34px)] font-semibold leading-tight">
+                        A deeper look at how this prototype shaped SpeakEasy.
+                      </h5>
+                      <p className="mt-4 max-w-[58ch] text-[15px] leading-relaxed text-ink/72">
+                        I am turning this into a focused mini case study with
+                        the storyboard, test feedback, key iterations, and the
+                        specific decisions that carried forward into the final
+                        product.
+                      </p>
+                    </div>
+
+                    <div className="mt-6 grid gap-4 min-[700px]:grid-cols-[1fr_1fr]">
+                      <div>
+                        <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                          Prototype idea
+                        </p>
+                        <p className="mt-2 text-[14px] leading-relaxed text-ink/75">
+                          {activeConcept.what}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="font-mono text-[10.5px] uppercase tracking-wide text-pencil">
+                          What carried forward
+                        </p>
+                        <p className="mt-2 text-[14px] leading-relaxed text-ink/75">
+                          {activeConcept.verdict}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body,
+        )}
     </>
   );
 }

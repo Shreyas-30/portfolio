@@ -156,7 +156,7 @@ export default function AutonomousBattlebotPage() {
         <p className="mt-3 text-lg text-ink/80">{battlebot.subtitle}</p>
       </header>
 
-      <section className="mt-9 grid items-stretch gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+      <section className="mt-9 grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr]">
         <ImageCard
           image={assets.thumbnail}
           className="aspect-[4/3]"
@@ -165,19 +165,18 @@ export default function AutonomousBattlebotPage() {
           framed={false}
         />
 
-        <div className="flex flex-col justify-between py-2 lg:py-4">
+        <div className="flex flex-col justify-center gap-6 py-2 lg:py-4">
           <div>
             <p className="text-lg leading-relaxed text-ink/80">
               This came out of the MEAM510 mechatronics course at Penn which I
               audited, where the final project was a battlebot competition on a
               game arena. The bot had to navigate autonomously and
               semi-autonomously, capture towers, score points, and survive
-              against other teams’ robots, so the project became a mix of quick
-              mechanical iteration, embedded software, and strategy.
+              against other teams’ robots.
             </p>
           </div>
 
-          <dl className="mt-8 grid gap-x-8 gap-y-5 border-t border-ink/15 pt-5 sm:grid-cols-3">
+          <dl className="grid gap-x-8 gap-y-5 border-t border-ink/15 pt-5 sm:grid-cols-3">
             {[
               [
                 "Electronics",
@@ -203,7 +202,7 @@ export default function AutonomousBattlebotPage() {
         <SectionHeader
           kicker="01 · V1"
           title="Starting with the simplest thing that could drive"
-          body="The arena had real constraints: a slope to climb, wall heights to work around, and tight size limits. Our first pass was about making something that moved reliably before getting clever."
+          body="The game mechanics and terrain constraints such as ramp, wall heights to work around, and home base size limit is what drove our design decisions. Our first pass was about making something that moved reliably withing these constraints before getting clever."
         />
 
         <div className="grid gap-6 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
@@ -213,18 +212,18 @@ export default function AutonomousBattlebotPage() {
               <p>
                 We chose differential drive over skid steer because it was
                 easier to implement quickly and matched what had worked in
-                previous successful builds. A front caster kept the platform
-                simple while we figured out the rest of the bot.
+                previous year's successful builds. We used a front caster for
+                steering.
               </p>
               <p>
                 I programmed a basic ESP32 remote-control setup first. It let us
                 confirm the motor drivers, wiring, and drive controls before
-                investing more time in sensors and autonomy.
+                added any sensors and autonomy.
               </p>
               <p>
                 At this stage we were using Adafruit TT gearbox motors with
                 external TT encoders from the lab. I also started tuning a PID
-                closed-loop here for dead reckoning.
+                closed-loop for dead reckoning.
               </p>
             </div>
           </div>
@@ -280,8 +279,8 @@ export default function AutonomousBattlebotPage() {
       <section className="mt-20">
         <SectionHeader
           kicker="02 · V2"
-          title="A better base, then sensors"
-          body="The second version cleaned up the movement problem first. We switched away from the front wheel caster, moved to stronger DC motors with integrated encoders, and started adding the sensing stack for autonomy."
+          title="Follow the wall, avoid the obstacles"
+          body="Wall following was one of the subtasks in the game, so we added a side-facing time-of-flight sensor for that, and tuned the PID loop to keep the bot moving straight."
         />
 
         <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
@@ -299,9 +298,9 @@ export default function AutonomousBattlebotPage() {
               <div className="rounded-lg bg-paper-2 p-6 shadow-[0_1px_0_rgba(26,24,20,0.05)]">
                 <p className="kicker text-accent">Drive</p>
                 <p className="mt-3 text-base leading-relaxed text-ink/76">
-                  The front caster became a ball caster, and the motors moved to
-                  stronger DC units with integrated encoders. The base was
-                  easier to turn and the feedback was cleaner.
+                  The front caster became a ball caster, and we replaced motors
+                  with integrated encoders. The base was easier to turn and the
+                  feedback was cleaner.
                 </p>
               </div>
             </div>
@@ -311,9 +310,9 @@ export default function AutonomousBattlebotPage() {
               <p className="mt-3 text-base leading-relaxed text-ink/78">
                 A single side sensor was not enough for reliable wall following
                 as the bot veered off course struggling to maintain
-                straight-line motion. Dead reckoning with PID also drifted once
-                the wheels slipped, which pushed us toward the three-sensor
-                final layout.
+                straight-line motion. Dead reckoning with PID also drifted when
+                the wheels slipped on the ramp - we tried adding rubber bands to
+                the wheels to increase traction.
               </p>
             </div>
           </div>
@@ -357,10 +356,10 @@ export default function AutonomousBattlebotPage() {
           <NoteList
             title="Final integration"
             items={[
-              "Used two side-facing VL53L1X ToF sensors to get accurate heading by measuring the difference in readings for more stable wall following, plus one front sensor for obstacle avoidance.",
+              "Used two side-facing ToF sensors to get accurate heading by measuring the difference in readings for more stable wall following, plus one front sensor for obstacle avoidance.",
               "Integrated the provided Top Hat circuit with the ESP32 so game commands, scoring, and bot health stayed in sync.",
               "Added the required whisker switch, which let other bots physically register hits and deplete our health during the match.",
-              "We ended up leaving out the servo based attack mechanism on the top becuase of time constraints.",
+              "We ended up leaving out the servo based attack mechanism becuase of time constraints.",
             ]}
           />
         </div>

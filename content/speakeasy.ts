@@ -52,9 +52,18 @@ export const speakeasyContent = {
       t: "How might we make practice come from a learner's real world?",
       why: "The strongest learning moments came from context learners already understood: the places they moved through, the media they consumed, and the routines they repeated.",
       ideas: [
-        { n: "Browser-to-lesson companion", d: "turn everyday browsing into short lessons, which became the LangLearn prototype" },
-        { n: "Environment immersion", d: "make café chatter, signs, and videos feel like practice material, later explored through Verba" },
-        { n: "Scenario rehearsal", d: "let learners practice real situations like ordering food or making calls before they happen" },
+        {
+          n: "Browser-to-lesson companion",
+          d: "turn everyday browsing into short lessons, which became the LangLearn prototype",
+        },
+        {
+          n: "Environment immersion",
+          d: "make café chatter, signs, and videos feel like practice material, later explored through Verba",
+        },
+        {
+          n: "Scenario rehearsal",
+          d: "let learners practice real situations like ordering food or making calls before they happen",
+        },
       ],
     },
     {
@@ -62,9 +71,18 @@ export const speakeasyContent = {
       t: "How might we teach through content people already care about?",
       why: "Learners did not want more abstract drills. They wanted language attached to culture, interests, and stories that made the words worth remembering.",
       ideas: [
-        { n: "Story capsules", d: "small lessons around idioms, humor, and customs from media learners already watch" },
-        { n: "Word lens", d: "show how one word changes meaning across articles, videos, and everyday contexts" },
-        { n: "Interest-based feed", d: "let learners choose topics first, which became the backbone of SpeakEasy's article feed" },
+        {
+          n: "Story capsules",
+          d: "small lessons around idioms, humor, and customs from media learners already watch",
+        },
+        {
+          n: "Word lens",
+          d: "show how one word changes meaning across articles, videos, and everyday contexts",
+        },
+        {
+          n: "Interest-based feed",
+          d: "let learners choose topics first, which became the backbone of SpeakEasy's article feed",
+        },
       ],
     },
     {
@@ -72,9 +90,18 @@ export const speakeasyContent = {
       t: "How might we make speaking practice feel low-stakes but real?",
       why: "Almost every learner described the same gap: they could recognize words, but froze when they had to speak. The product needed rehearsal without embarrassment.",
       ideas: [
-        { n: "Wearable companion", d: "surface small prompts during real-world moments, an early path we chose not to pursue" },
-        { n: "Voice AI buddy", d: "natural conversation with gentle feedback, first tested in Verba and later carried into SpeakEasy" },
-        { n: "Article discussion", d: "turn something the learner just read into a focused spoken conversation" },
+        {
+          n: "Wearable companion",
+          d: "surface small prompts during real-world moments, an early path we chose not to pursue",
+        },
+        {
+          n: "Voice AI buddy",
+          d: "natural conversation with gentle feedback, first tested in Verba and later carried into SpeakEasy",
+        },
+        {
+          n: "Article discussion",
+          d: "turn something the learner just read into a focused spoken conversation",
+        },
       ],
     },
   ],
@@ -84,7 +111,7 @@ export const speakeasyContent = {
       k: "Concept A",
       name: "LangLearn",
       sub: "micro-immersive daily learning",
-      what: "A Chrome extension that pulls real vocabulary and phrases from your everyday browsing, then turns them into personalized lessons on mobile.",
+      what: "We saw some existing solutions people used were Chrome extensions such as a few which modifided the text users read in different language or gave quick learning tools on any website. So we decided to build a Chrome extension that pulled real vocabulary and phrases from your everyday browsing, then turns them into personalized lessons on mobile.",
       story: [
         "Anna installs the extension & connects the mobile app",
         "It explains exactly what it tracks, and what it never does",
@@ -93,13 +120,14 @@ export const speakeasyContent = {
       ],
       fb1: "Excited about personalization · alarmed by tracking & privacy · wanted visible progress, on mobile",
       iter: "Rebuilt consent-first: one-click tracking on/off, review & delete any tracked site, lessons moved fully to mobile.",
-      verdict: "Learning from your real life worked. Living in the browser, and asking people to accept tracking, did not.",
+      verdict:
+        "Testing this we found that learning first thing users were concerned about was privacy and tracking. But they liked that learning content was personalized and about the things they already loved to consumed. Also the interface on browswer was not ideal for daily use and everyone preferred the mobile experience.",
     },
     {
       k: "Concept B",
       name: "Verba",
       sub: "an AR language companion",
-      what: "AR smart-glasses that see what you see and chat with you about it in your target language, like a friend beside you, then compile learning materials from your day.",
+      what: "My teammate Jenn(seen in the picture below) owned a pair of Snaptacles from Snap so we decided to develop something using it. Idea was AR smart-glasses that see what you see bringing in context for practice in your target language. Mini lessons help build confidence at the right moments. ",
       story: [
         "Bryan's textbook Japanese confuses his mother-in-law",
         "His glasses watch YouTube along with him",
@@ -108,7 +136,8 @@ export const speakeasyContent = {
       ],
       fb1: "Powerful low-anxiety practice · privacy concerns · nobody owns AR glasses · talking to a virtual person felt strange",
       iter: "Tracked only a cropped area; added customizable animal & human characters. Testers relaxed talking to an animated character.",
-      verdict: "Right feeling, wrong hardware. We shelved it, but the voice-buddy insight survived into the final product.",
+      verdict:
+        "People liked that the practice was based on reality around them. Also format of lessons as conversation with a buddy felt more effective than a regular lesson. But we also realized that not many people had AR glasses still and it would be hard to test this hardware more widely. So we kept the voice-buddy insight into the final product.",
     },
   ],
 
@@ -135,7 +164,10 @@ export const speakeasyContent = {
   pivotAudience:
     "That pushed us toward adults outside formal classrooms, especially learners who wanted to improve English but could not reliably make time for ESL classes.",
   pivotStats: [
-    { b: "18–20M", s: "LEP adults age 30+ in the U.S., most outside any school system" },
+    {
+      b: "18–20M",
+      s: "LEP adults age 30+ in the U.S., most outside any school system",
+    },
     { b: "4%", s: "of adults actually participate in ESL classes" },
     { b: "40%", s: "cite no time · 26% cost · 23% transportation" },
     { b: "59%", s: "didn't know where classes even were" },
@@ -225,15 +257,29 @@ export const speakeasyContent = {
   validation: {
     cohort:
       "16 immigrant adults (25–65), mixed English proficiency, diverse industries. Two weeks of testing focused on confidence, psychological safety, and practical utility.",
-    expert: "Josh Lewis, a 10-year ESL teaching expert and founder of Boost Up English",
-    stack: "Expo · React Native · Zustand · Node.js · Supabase · OpenAI · ElevenLabs · Guardian/GNews · ~12,300 lines",
+    expert:
+      "Josh Lewis, a 10-year ESL teaching expert and founder of Boost Up English",
+    stack:
+      "Expo · React Native · Zustand · Node.js · Supabase · OpenAI · ElevenLabs · Guardian/GNews · ~12,300 lines",
   },
   next: "Scenario modules (doctor, grocery, transportation) · personalized learning paths · B2B community partnerships",
 
   sections: [
-    { k: "01", label: "The wide problem", head: "Billions try. Few feel fluent." },
-    { k: "02", label: "The idea space", head: "Turning research into nine ideas" },
-    { k: "03", label: "Two prototypes", head: "LangLearn and Verba, built and tested" },
+    {
+      k: "01",
+      label: "The wide problem",
+      head: "Billions try. Few feel fluent.",
+    },
+    {
+      k: "02",
+      label: "The idea space",
+      head: "Turning research into nine ideas",
+    },
+    {
+      k: "03",
+      label: "Two prototypes",
+      head: "LangLearn and Verba, built and tested",
+    },
     { k: "04", label: "The pivot", head: "Meet the 4%" },
     { k: "05", label: "The product", head: "A feed you learn inside" },
   ],

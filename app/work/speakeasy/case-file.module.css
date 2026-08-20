@@ -12,6 +12,34 @@
     opacity 0.3s ease;
 }
 
+.scrollArea {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(44, 41, 35, 0.34) transparent;
+}
+
+.scrollArea::-webkit-scrollbar {
+  width: 14px;
+}
+
+.scrollArea::-webkit-scrollbar-track {
+  background: transparent;
+  margin-block: 14px;
+}
+
+.scrollArea::-webkit-scrollbar-thumb {
+  min-height: 44px;
+  border: 4px solid transparent;
+  border-radius: 999px;
+  background: rgba(44, 41, 35, 0.3);
+  background-clip: content-box;
+}
+
+.scrollArea::-webkit-scrollbar-thumb:hover {
+  background: rgba(44, 41, 35, 0.42);
+  background-clip: content-box;
+}
+
 @keyframes xrise {
   from {
     opacity: 0;
